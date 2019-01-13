@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 bin_path=$(cd `dirname "$0"`; pwd)
-	service_pid=/tmp/Application/Application.pid
+	service_pid=/tmp/HttpServer/HttpServer.pid
 
 	if [ -f "$service_pid" ]; then
 	    TARGET_ID="$(cat "$service_pid")"

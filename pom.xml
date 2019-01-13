@@ -28,6 +28,14 @@
         <project.encoding>UTF-8</project.encoding>
     </properties>
 
+    <dependencies>
+        <!-- lombok support -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
+    </dependencies>
 
     <repositories>
         <repository>

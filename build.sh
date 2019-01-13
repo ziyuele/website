@@ -22,7 +22,7 @@ function build(){
     mkdir -p output/worker
     # set httpServer
     cd httpServer/target
-    mv conf lib bin webapp httpServer-*.jar ../../output/httpServer
+    mv conf lib bin httpServer-*.jar ../../output/httpServer
     echo "http server done"
     # other moudle is not build yet
 }

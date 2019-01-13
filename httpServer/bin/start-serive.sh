@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 ###########################################################################
 	#
-	# Copyright (c) 2018 Baidu.com, Inc. All Rights Reserved
-	# Author kangjian(kangjian03@baidu.com)
-	# Date 2018/05/30 00:11
+	# Author kangjian
+	# Date 2019/1/12 00:11
 	# Version 1.0.0.1
 	# start bigsql-spark-service
 	#
@@ -50,7 +49,8 @@
 	export CLASSPATH=$work_path/webapp/*:$CLASSPATH
 
 	# start service
-	nohup java  $JAVA_BASE_ARGV $JAVA_DEBUG_ARGV com.ziyue.Application $INPUT_ARGV >> nohup.out 2>&1 < /dev/null &
+	nohup java  $JAVA_BASE_ARGV $JAVA_DEBUG_ARGV com.ziyue.website.httpserver.HttpServer $INPUT_ARGV >> nohup.out 2>&1 < /dev/null &
 	pid=$!
 	echo "service start whith pid $pid"
-	echo $pid > /tmp/Application/Application.pid
+    mkdir -p /tmp/HttpServer
+	echo $pid > /tmp/HttpServer/HttpServer.pid
