@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<project name="maven-antrun-" default="main"  >
-<target name="main">
-  <echo>copy /Users/kangjian03/IdeaProjects/websit/httpServer/src/main/webapp /Users/kangjian03/IdeaProjects/websit/httpServer/target/webapp</echo>
-  <copy todir="/Users/kangjian03/IdeaProjects/websit/httpServer/target/webapp">
-    <fileset dir="/Users/kangjian03/IdeaProjects/websit/httpServer/src/main/webapp"/>
-  </copy>
-</target>
-</project>

@@ -44,7 +44,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>com.ziyue.Application</mainClass>
+                            <mainClass>com.ziyue.website.httpserver.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

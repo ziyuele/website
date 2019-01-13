@@ -1,4 +1,4 @@
-package com.ziyue.controler;
+package com.ziyue.website.httpserver.controler;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

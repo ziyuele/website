@@ -1,4 +1,4 @@
-package com.ziyue;
+package com.ziyue.website.httpserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

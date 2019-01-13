@@ -3,5 +3,5 @@ output/
 *.iml
 logs/*
 output
-target/*
+target
 
