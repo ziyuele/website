@@ -1,4 +1,4 @@
-package com.ziyue.website.httpserver.controler.interceptors;
+package com.ziyue.website.httpserver.interceptors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

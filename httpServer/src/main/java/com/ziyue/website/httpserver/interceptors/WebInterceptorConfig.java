@@ -1,4 +1,4 @@
-package com.ziyue.website.httpserver.controler.interceptors;
+package com.ziyue.website.httpserver.interceptors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
