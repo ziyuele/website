@@ -10,6 +10,7 @@
    <packaging>pom</packaging>
 
    <modules>
+       <module>common</module>
        <module>httpServer</module>
        <module>master</module>
        <module>worker</module>
