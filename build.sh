@@ -12,6 +12,7 @@ function exit_with_usage(){
     echo "\t --tgz"
     echo "\t --test"
     echo "\t --compile"
+    echo "\t --build"
 }
 
 function make_tgz(){
@@ -26,6 +27,14 @@ function make_tgz(){
     echo "done"
 }
 
+function build(){
+    mvn clean package -DSkiptests
+    rm -rf output; mkdir output
+    cd target
+    mv conf lib bin webapp website-*.jar  ../output/
+    echo "done"
+}
+
 if [[ $# != 1 ]];then
     exit_with_usage
     exit -1
@@ -33,6 +42,9 @@ fi
 
 while (("$#")); do
     case $1 in
+        --build)
+        build
+        ;;
         --tgz)
         make_tgz
         ;;
