@@ -9,30 +9,22 @@ cd $(cd `dirname "$0"`; pwd)
 
 function exit_with_usage(){
     echo "usage: sh build.sh"
-    echo "\t --tgz"
     echo "\t --test"
     echo "\t --compile"
     echo "\t --build"
 }
 
-function make_tgz(){
-    mvn clean package -DSkiptests
-    rm -rf output; mkdir output
-    cd target
-    jar_name=`ls website*.jar`
-    tgz_name=${jar_name%.*}
-    echo "make tgz doing..."
-    tar zcf "$tgz_name".tgz conf lib bin webapp website-*.jar
-    mv "$tgz_name".tgz ../output
-    echo "done"
-}
-
 function build(){
     mvn clean package -DSkiptests
     rm -rf output; mkdir output
-    cd target
-    mv conf lib bin webapp website-*.jar  ../output/
-    echo "done"
+    mkdir -p output/httpServer
+    mkdir -p output/master
+    mkdir -p output/worker
+    # set httpServer
+    cd httpServer/target
+    mv conf lib bin webapp httpServer-*.jar ../../output/httpServer
+    echo "http server done"
+    # other moudle is not build yet
 }
 
 if [[ $# != 1 ]];then
@@ -44,9 +36,6 @@ while (("$#")); do
     case $1 in
         --build)
         build
-        ;;
-        --tgz)
-        make_tgz
         ;;
         --test)
         mvn clean test
