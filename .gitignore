@@ -4,4 +4,6 @@ output/
 logs/*
 output
 target
-
+node_modules
+package-lock.json
+dist

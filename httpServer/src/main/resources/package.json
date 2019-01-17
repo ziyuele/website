@@ -1,0 +1,21 @@
+{
+     "name": "web-site",
+     "description": "vue font end",
+     "version": "1.0.0",
+     "dependencies": {
+          "vue": "2.5.21"
+     },
+     "devDependencies": {
+          "webpack-cli": "^3.0.0",
+          "webpack-dev-server": "^3.0.0",
+          "webpack": "^4.0.0",
+          "vue": "^2.0.0"
+     },
+     "scripts": {
+          "build": "webpack --mode production",
+          "dev": "webpack-dev-server --inline --mode development"
+     },
+     "engines": {
+          "node": ">=6.0.0"
+     }
+}
