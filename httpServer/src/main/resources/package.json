@@ -3,16 +3,27 @@
      "description": "vue font end",
      "version": "1.0.0",
      "dependencies": {
-          "vue": "2.5.21"
+          "babel": "^6.23.0"
      },
      "devDependencies": {
-          "webpack-cli": "^3.0.0",
-          "webpack-dev-server": "^3.0.0",
+          "babel-core": "^6.26.3",
+          "babel-loader": "^7.0.0",
+          "babel-preset-vue-app": "^1.2.0",
+          "css-loader": "^2.0.0",
+          "element-ui": "^2.4.11",
+          "file-loader": "^1.1.2",
+          "html-webpack-plugin": "^3.0.0",
+          "postcss-loader": "^2.0.0",
+          "url-loader": "^1.1.2",
+          "vue": "2.5.16",
+          "vue-loader": "^15.5.1",
+          "vue-template-compiler": "2.5.16",
           "webpack": "^4.0.0",
-          "vue": "^2.0.0"
+          "webpack-cli": "^3.0.0",
+          "webpack-dev-server": "^3.0.0"
      },
      "scripts": {
-          "build": "webpack --mode production",
+          "build": "webpack --mode production -p --progress ",
           "dev": "webpack-dev-server --inline --mode development"
      },
      "engines": {

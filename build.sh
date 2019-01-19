@@ -1,5 +1,5 @@
 #!/bin/bash
-
+FONT_END_PAHT=httpServer/src/main/resources
 # env check
 which javac > /dev/null
 if [[ $? != 0 ]];then
@@ -15,6 +15,7 @@ function exit_with_usage(){
 }
 
 function build(){
+    cd httpServer/src/main/resources && npm run build && rm -rf node_modules && cd -
     mvn clean package -DSkiptests
     rm -rf output; mkdir output
     mkdir -p output/httpServer
