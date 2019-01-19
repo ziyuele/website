@@ -7,7 +7,17 @@
 
 <script>
   export default {
-      created () {
+      created() {
+          $.ajax({
+              url: "/v1/version",
+              success: (response) => {
+                  this.name = JSON.stringify(response);
+              },
+              error: (response) => {
+                  this.name = JSON.stringify(response);
+              }
+          });
+          this.name = "adfasfa";
       },
       data() {
           return {
