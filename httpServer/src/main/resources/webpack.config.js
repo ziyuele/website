@@ -7,6 +7,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   plugins: [
      new VueLoaderPlugin(),
+     new webpack.ProvidePlugin({
+         $: 'jquery',
+         jQuery: 'jquery',
+         'windows.jQuery': 'jquery'
+     }),
      new HtmlWebpackPlugin({
                  template: 'src/index.html',
              })
@@ -19,9 +24,25 @@ module.exports = {
       filename: "main.js"
     },
   devServer:{
-
+      host: '0.0.0.0',
+      headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+          'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization'
+      },
+      port: 8888,
+      disableHostCheck: true,
+      proxy: {
+          '/v1/': {
+              target: 'http://localhost:8080/',
+              changeOrigin: true,
+              pathRewrite: {
+                  '^/api': ''
+              }
+          }
+      }
   },
- resolve: {
+  resolve: {
     alias: {
     'vue': 'vue/dist/vue.js'
       }
