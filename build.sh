@@ -1,10 +1,15 @@
 #!/bin/bash
 FONT_END_PAHT=httpServer/src/main/resources
+VERSION_SET_PATH=common/src/main/resources/version
+
+
 # env check
 which javac > /dev/null
 if [[ $? != 0 ]];then
     echo "check your java env"
 fi
+
+git rev-parse --short HEAD > $VERSION_SET_PATH
 cd $(cd `dirname "$0"`; pwd)
 
 function exit_with_usage(){
