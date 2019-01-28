@@ -1,12 +1,9 @@
 package com.ziyue.website.common;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.Objects;
 
 import lombok.Cleanup;
 import lombok.extern.slf4j.Slf4j;
@@ -24,16 +21,10 @@ public class Commons {
         return format.format(System.currentTimeMillis());
     }
 
-    public static String VERSION() {
-        try {
-            String path = Commons.class.getClassLoader().getResource("version").getPath();
-            @Cleanup
-            BufferedReader versionFile = new BufferedReader(
-                    new InputStreamReader(Commons.class.getClass().getClassLoader().getResourceAsStream("version")));
-            return versionFile.readLine();
-        } catch (IOException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        }
+    public static String VERSION() throws Exception {
+        InputStream in = Commons.class.getClass().getResourceAsStream("/version");
+        @Cleanup BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+        return bufferedReader.readLine();
     }
 }
 

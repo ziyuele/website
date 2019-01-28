@@ -1,11 +1,11 @@
 package com.ziyue.website.httpserver.controler;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ziyue.website.common.Commons;
 
-@Controller
+@RestController
 public class ServerController {
 
     @RequestMapping("/")
@@ -14,7 +14,7 @@ public class ServerController {
     }
 
     @RequestMapping("/version")
-    public Response getVersion() {
+    public Response getVersion() throws Exception{
         return Response.ok(Commons.VERSION());
     }
 }

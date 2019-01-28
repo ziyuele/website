@@ -22,7 +22,7 @@ function exit_with_usage(){
 function build(){
     cd httpServer/src/main/resources && npm install  && npm run build && rm -rf node_modules 
     cd -
-    mvn clean package -DSkiptests
+    mvn clean package -DskipTests
     rm -rf output; mkdir output
     mkdir -p output/httpServer
     mkdir -p output/master

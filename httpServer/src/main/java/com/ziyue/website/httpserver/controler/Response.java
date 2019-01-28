@@ -2,6 +2,11 @@ package com.ziyue.website.httpserver.controler;
 
 import com.ziyue.website.common.Commons;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Response {
     private String message;
     private Integer status;
@@ -20,14 +25,14 @@ public class Response {
     }
 
     public static Response ok() {
-        return new Response(Commons.OK_MSG, Commons.OK_STATUS, null);
+        return new Response(Commons.OK_MSG, Commons.OK_STATUS, "");
     }
 
     public static Response error(String message, Integer status) {
-        return new Response(message, status, null);
+        return new Response(message, status, "");
     }
 
     public static Response error(String message) {
-        return new Response(message, Commons.ERROR_STATUS, null);
+        return new Response(message, Commons.ERROR_STATUS, "");
     }
 }

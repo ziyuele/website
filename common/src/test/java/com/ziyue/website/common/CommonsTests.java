@@ -5,7 +5,7 @@ import org.junit.Test;
 public class CommonsTests {
 
     @Test
-    public void testGetVersion() {
-       //System.out.println(Commons.VERSION());
+    public void testGetVersion() throws Exception {
+       System.out.println(Commons.VERSION());
     }
 }
