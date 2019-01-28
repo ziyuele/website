@@ -1,6 +1,7 @@
 package com.ziyue.website.common;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
@@ -21,10 +22,16 @@ public class Commons {
         return format.format(System.currentTimeMillis());
     }
 
-    public static String VERSION() throws Exception {
-        InputStream in = Commons.class.getClass().getResourceAsStream("/version");
-        @Cleanup BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
-        return bufferedReader.readLine();
+    public static String VERSION() {
+        try {
+            InputStream in = Commons.class.getClass().getResourceAsStream("/version");
+            @Cleanup
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
+            return bufferedReader.readLine();
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            return e.getMessage();
+        }
     }
 }
 

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ziyue.website.httpserver.controler.Response;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/v1")
 public class PDFController {
 
     @GetMapping("/pdfs")

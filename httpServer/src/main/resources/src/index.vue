@@ -43,7 +43,7 @@
   export default {
       created() {
           $.ajax({
-              url: "/v1/version",
+              url: "/version",
               success: (response) => {
                   this.name = JSON.stringify(response);
               },
