@@ -24,7 +24,7 @@ public class Commons {
 
     public static String VERSION() {
         try {
-            InputStream in = Commons.class.getClass().getResourceAsStream("/version");
+            InputStream in = Commons.class.getClassLoader().getResourceAsStream("version");
             @Cleanup
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(in));
             return bufferedReader.readLine();
