@@ -22,7 +22,7 @@
                         <!-- add child page here default is fff -->
                         <el-menu router background-color="#E4E7ED" text-color="#525C64" active-text-color="#326DE6" class="el-menu-vertical-demo">
                             <el-menu-item index="fff" :route="{path:'/'}">首页</el-menu-item>
-                            <el-menu-item index="fff" :route="{path:'/api/pdfs'}">闲的蛋疼的文档</el-menu-item>
+                            <el-menu-item index="fff" :route="{path:'/v1/pdfs'}">闲的蛋疼的文档</el-menu-item>
                             <el-menu-item index="ggg" :route="{path:'/apps/'}">home</el-menu-item>
                             <el-menu-item index="hhh" :route="{path:'/app1/'}">home</el-menu-item>
                         </el-menu>

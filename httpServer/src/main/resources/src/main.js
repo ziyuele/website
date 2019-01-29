@@ -7,9 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import PDFS from './pdfs.vue';
 
-
 const vueRouter = [
-    { path:'/pdfs', component: PDFS  }
+    { path:'/v1/pdfs', component: PDFS  }
 ]
 
 
