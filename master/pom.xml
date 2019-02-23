@@ -12,9 +12,18 @@
 
     <artifactId>master</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
 
-    <properties>
-        <jdk.version>1.8</jdk.version>
-        <project.encoding>UTF-8</project.encoding>
-    </properties>
+    </dependencies>
+
 </project>
