@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package proto;
+
+option java_package = "com.ziyue.website.common.rpc";
+option java_outer_classname = "RPCService";
+
+// httpServr to master
+service MasterService {
+
+}
+
+//  Master to worker
+service WorkerService {
+
+}
