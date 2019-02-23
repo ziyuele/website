@@ -5,9 +5,11 @@ package proto;
 option java_package = "com.ziyue.website.common.rpc";
 option java_outer_classname = "RPCService";
 
+import "common.proto";
+
 // httpServr to master
 service MasterService {
-
+   rpc  getMasterStatus(Request) returns (Response){};
 }
 
 //  Master to worker

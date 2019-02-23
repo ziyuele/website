@@ -6,10 +6,29 @@ option java_package = "com.ziyue.website.common.rpc";
 option java_outer_classname = "RPCCommon";
 
 
+enum ErrorCode {
+   OK = 0;
+   INTERNAL_ERROR = 1;
+}
+
+enum RequestConfigrationType {
+   JOB = 0;
+   META = 1;
+   PING = 2;
+   OTHER = 3;
+}
+
+message GRequestConfigration {
+    ErrorCode error = 1;
+    RequestConfigrationType requestType = 2;
+}
+
 // Unified Message Request Architecture
 message Request {
-    
-
+  ErrorCode errorCode = 1;
+  string startTime = 2;
+  string endTime = 3;
+  GRequestConfigration config = 4;
 }
 
 //  Unified Message Response Architecture
