@@ -82,10 +82,11 @@
         </plugins>
     </build>
 
-    <repositories>
+    <!-- using ali yun repository for foreign repository is too slow-->
+   <repositories>
         <repository>
-            <id>spring</id>
-            <url>https://maven.aliyun.com/repository/public/</url>
+            <id>alimvn</id>
+            <url>https://maven.aliyun.com/repository/public</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -93,6 +94,6 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
-    </repositories>
+   </repositories>
 
 </project>

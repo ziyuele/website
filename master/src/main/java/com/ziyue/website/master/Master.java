@@ -30,19 +30,35 @@ public class Master implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        // start master-httpServer rpc server
+        // 1.start master-httpServer rpc server
         log.info("start master-httpServer rpc server");
         if (masterServerHandler.init()) {
-            log.info("now master-httpServer config init ok , try to start service");
+            log.info("now master-httpServer config init ok , try to start rpc service");
             if (masterServerHandler.start()) {
                log.info("now master-httpServer started");
             } else {
                 log.warn("start master-httpServer error");
+                exitSystem();
             }
+        } else {
+            log.warn("int master-httpServer rpc server env error");
+            exitSystem();
         }
 
-        // start master-worker rpc server
+        // 2.start master-worker rpc server
         log.info("start master-worker rpc server");
+        if (masterWorkerHandler.init()) {
+            log.info("now master-worker config init ok, try to start rpc service");
+            if (masterWorkerHandler.start()) {
+                log.info("now master-worker started");
+            } else {
+                log.warn("start master-worker error");
+                exitSystem();
+            }
+        } else {
+            log.warn("init master-worker rpc server env error");
+            exitSystem();
+        }
     }
 
     /**

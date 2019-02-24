@@ -20,6 +20,7 @@ function exit_with_usage(){
 }
 
 function build(){
+    # http module
     cd httpServer/src/main/resources && npm install  && npm run build && rm -rf node_modules 
     cd -
     mvn clean package -DskipTests
@@ -29,9 +30,12 @@ function build(){
     mkdir -p output/worker
     # set httpServer
     cd httpServer/target
-    mv conf lib bin httpServer-*.jar ../../output/httpServer
+    mv conf lib bin httpServer-*.jar ../../output/httpServer && cd -
     echo "http server done"
-    # other moudle is not build yet
+    # set master
+    cd master/target
+    mv conf lib bin master-*.jar ../../output/master && cd -
+    echo "master done"
 }
 
 if [[ $# != 1 ]];then
