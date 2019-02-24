@@ -9,7 +9,7 @@ if [[ $? != 0 ]];then
     echo "check your java env"
 fi
 
-git rev-parse --short HEAD > $VERSION_SET_PATH
+echo "build-time:["`date`"]  version:["`git rev-parse --short HEAD`"]" > $VERSION_SET_PATH
 cd $(cd `dirname "$0"`; pwd)
 
 function exit_with_usage(){
