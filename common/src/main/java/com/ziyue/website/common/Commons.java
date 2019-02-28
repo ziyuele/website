@@ -4,8 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -30,23 +33,53 @@ public class Commons {
     /*
     this is master module
      */
+    @Value("${website.master.zookeeper.root.path:/website/master}")
+    private String MASTER_ZOOKEEPER_ROOT_PATH;
+
+    @Value("${website.master.rpc.server.port:9999}")
+    private int MASTER_RPC_SERVER_PORT;
+
 
     /*
     this is worker module
      */
 
+    @Value("${website.worker.zookeeper.root.path:/website/worker}")
+    private String WORKER_ZOOKEEPER_ROOT_PATH;
+
+
+    @Value("${website.worker.rpc.server.port:9998}")
+    private int WORKER_RPC_SERVER_PORT;
     /*
     this is common module
      */
     @Value("${website.common.zookeeper.implement.type:zookeeper}")
     private String ZOOKEEPER_IMPLEMENT_TYPE;
 
+    @Value("${website.common.zookeeper.server.host:140.143.132.21}")
+    private String ZOOKEEPER_SERVER_HOST;
+
+    @Value("${website.common.zookeeper.server.port:8181}")
+    private int ZOOKEEPER_SERVER_PORT;
+
+    @Value("${website.common.zookeeper.session.timout:10000}")
+    private int ZOOKEEPER_SESSION_TIMEOUT;
+
+    @Value("${website.common.devault.charset.encoding:UTF-8}")
+    private String DEFAULT_CHARSET_ENCODING;
+
+
+    /*
+    this is default setting that can not be change
+     */
     public static final String OK_MSG = "ok";
     public static final int OK_STATUS = 200;
     public static final int ERROR_STATUS = 405;
 
     private static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private static final SimpleDateFormat format = new SimpleDateFormat(Commons.TIME_FORMAT);
+    private Logger e;
+
     public static String TIME_STAMP() {
         return format.format(System.currentTimeMillis());
     }
@@ -61,6 +94,15 @@ public class Commons {
             log.error(e.getMessage(), e);
             return e.getMessage();
         }
+    }
+
+    public static String HOST_ADDRESS () {
+       try {
+           return InetAddress.getLocalHost().getHostAddress();
+       } catch (UnknownHostException e) {
+           log.error(e.getMessage(), e);
+           return null;
+       }
     }
 }
 

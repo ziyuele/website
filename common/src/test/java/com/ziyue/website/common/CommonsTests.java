@@ -8,4 +8,9 @@ public class CommonsTests {
     public void testGetVersion() throws Exception {
        System.out.println(Commons.VERSION());
     }
+
+    @Test
+    public void testGetHost() {
+        System.out.println(Commons.HOST_ADDRESS());
+    }
 }

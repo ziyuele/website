@@ -26,6 +26,12 @@ public interface ZKSession {
     void create(String path, String data);
 
     /**
+     * create a dir
+     * @param path zk path
+     */
+    void createDir(String path);
+
+    /**
      * delete a node
      * @param path path to delete
      */
