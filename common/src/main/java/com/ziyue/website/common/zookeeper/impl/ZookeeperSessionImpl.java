@@ -166,7 +166,7 @@ public class ZookeeperSessionImpl extends AbstractZKSession implements ZKSession
            switch (event.getState()) {
                case SyncConnected:
                    log.debug("zookeeper connection ogay");
-                   ZookeeperSessionImpl.this.notifyAll();
+                   // ZookeeperSessionImpl.this.notifyAll();
                case Disconnected:
                    log.warn("connection lost try to connect");
                    this.zkClient = null;
