@@ -7,6 +7,7 @@ package com.ziyue.website.common.zookeeper.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.zookeeper.CreateMode;
@@ -38,7 +39,7 @@ public class ZookeeperSessionImpl extends AbstractZKSession implements ZKSession
     @Autowired
     public ZookeeperSessionImpl(Commons commons) {
         this.defaultCharset = commons.getDEFAULT_CHARSET_ENCODING();
-        this.hostPort = commons.getZOOKEEPER_SERVER_HOST()
+        this.hostPort = commons.getZOOKEEPER_SERVER_HOST() + ":"
                + commons.getZOOKEEPER_SERVER_PORT();
         this.sessionTimeout = commons.getZOOKEEPER_SESSION_TIMEOUT();
         this.createConnection();
@@ -85,8 +86,13 @@ public class ZookeeperSessionImpl extends AbstractZKSession implements ZKSession
     }
 
     @Override
-    public void createDir(String path) {
-
+    public void registDir(String path) {
+        String [] nodes = path.split("/");
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < nodes.length - 1; i ++ ) {
+            stringBuilder.append("/").append(nodes[i]);
+            create(path.toLowerCase().toString());
+        }
     }
 
     @Override

@@ -2,22 +2,10 @@ package com.ziyue.website.master.rpc;
 
 import org.springframework.stereotype.Component;
 
+import com.ziyue.website.common.rpc.MasterWorkerServiceGrpc;
+
 @Component
-public class MasterWorkerHandler extends AbstractRPCHandler{
+public class MasterWorkerHandler extends MasterWorkerServiceGrpc.MasterWorkerServiceImplBase {
 
-    @Override
-    public boolean init() {
-        return false;
-    }
-
-    @Override
-    public boolean start() {
-        return false;
-    }
-
-    @Override
-    public boolean stop() {
-        return  false;
-    }
 }
 

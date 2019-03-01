@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
+import com.ziyue.website.common.Commons;
+import com.ziyue.website.common.rpc.GRPCServerImpl;
+import com.ziyue.website.common.rpc.RPCServer;
 import com.ziyue.website.master.rpc.MasterServerHandler;
 import com.ziyue.website.master.rpc.MasterWorkerHandler;
 
@@ -12,15 +16,41 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
+@ComponentScan(basePackages = "com.ziyue")
 public class Master implements CommandLineRunner {
 
-    private MasterWorkerHandler masterWorkerHandler;
-    private MasterServerHandler masterServerHandler;
+   private RPCServer masterHttpServer;
+   private RPCServer masterWorkerServer;
+   private Commons commons;
 
     @Autowired
-    public Master(MasterServerHandler masterServerHandler, MasterWorkerHandler masterWorkerHandler) {
-        this.masterServerHandler = masterServerHandler;
-        this.masterWorkerHandler = masterWorkerHandler;
+    public Master(Commons commons) {
+        this.commons = commons;
+    }
+
+    private void init() {
+        // init master-http server
+        GRPCServerImpl.Args MasterServerArgs = new GRPCServerImpl.Args();
+        MasterServerArgs.port = commons.getMASTER_RPC_SERVER_PORT();
+        MasterServerArgs.service = new MasterServerHandler();
+        this.masterHttpServer = new GRPCServerImpl(MasterServerArgs);
+
+        // init master-worker server
+        GRPCServerImpl.Args masterWorkerArgs = new GRPCServerImpl.Args();
+        masterWorkerArgs.port = commons.getMASTER_PRC_WORKER_PORT();
+        masterWorkerArgs.service = new MasterWorkerHandler();
+        this.masterWorkerServer = new GRPCServerImpl(masterWorkerArgs);
+
+    }
+
+    private void start() {
+        try {
+            this.masterWorkerServer.start();
+            this.masterHttpServer.start();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            exitSystem(-1);
+        }
     }
     /**
      *  this mathod used to init all services include RPCService RPCClient
@@ -30,43 +60,18 @@ public class Master implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        // 1.start master-httpServer rpc server
-        log.info("start master-httpServer rpc server");
-        if (masterServerHandler.init()) {
-            log.info("now master-httpServer config init ok , try to start rpc service");
-            if (masterServerHandler.start()) {
-               log.info("now master-httpServer started");
-            } else {
-                log.warn("start master-httpServer error");
-                exitSystem();
-            }
-        } else {
-            log.warn("int master-httpServer rpc server env error");
-            exitSystem();
-        }
-
-        // 2.start master-worker rpc server
-        log.info("start master-worker rpc server");
-        if (masterWorkerHandler.init()) {
-            log.info("now master-worker config init ok, try to start rpc service");
-            if (masterWorkerHandler.start()) {
-                log.info("now master-worker started");
-            } else {
-                log.warn("start master-worker error");
-                exitSystem();
-            }
-        } else {
-            log.warn("init master-worker rpc server env error");
-            exitSystem();
-        }
+        init();
+        start();
     }
 
     /**
      *  this function used to stop all service and exit System
      */
-    public void exitSystem() {
+    public void exitSystem(int status) {
         log.warn("stop all system");
-        System.exit(0);
+        this.masterHttpServer.stop();
+        this.masterWorkerServer.stop();
+        System.exit(status);
     }
 
     public static void main(String args[]) {

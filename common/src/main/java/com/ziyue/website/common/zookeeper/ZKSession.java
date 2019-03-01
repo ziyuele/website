@@ -6,6 +6,8 @@ package com.ziyue.website.common.zookeeper;
 
 import java.util.List;
 
+import org.apache.zookeeper.CreateMode;
+
 /**
  *  this is an base interface to operation zookeeper
  *  using zk version: 3.4.10
@@ -29,7 +31,7 @@ public interface ZKSession {
      * create a dir
      * @param path zk path
      */
-    void createDir(String path);
+    void registDir(String path);
 
     /**
      * delete a node

@@ -5,6 +5,8 @@
 
 package com.ziyue.website.common.rpc;
 
+import java.io.IOException;
+
 import io.grpc.BindableService;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -15,35 +17,36 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-public class GRPCServerImpl extends RPCServer{
+public class GRPCServerImpl extends AbstractRPCServer implements RPCServer {
 
     private Server server;
     // used to input arguments
     public static class Args {
-        BindableService service;
-        int port;
+        public BindableService service;
+        public int port;
     }
+
     public GRPCServerImpl(Args args) {
         // using grpc to build a server
-        this.server = ServerBuilder.forPort(args.port).build();
+        this.server = ServerBuilder.forPort(args.port).addService(args.service).build();
     }
 
     @Override
-    rpcType getServiceType() {
+    public  rpcType getServiceType() {
         return rpcType.GRPC;
     }
 
     @Override
-    void stop() {
+    public void stop() {
       this.server.shutdown();
     }
 
     @Override
-    void start() {
+    public void start() {
         try {
             this.server.start();
             this.server.awaitTermination();
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException e) {
             log.warn(e.getMessage(), e);
         } finally {
             stop();

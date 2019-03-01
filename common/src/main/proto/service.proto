@@ -8,11 +8,15 @@ option java_outer_classname = "RPCService";
 import "common.proto";
 
 // httpServr to master
-service MasterService {
+service MasterHttpService {
    rpc  getMasterStatus(Request) returns (Response){};
 }
 
 //  Master to worker
-service WorkerService {
+service MasterWorkerService {
+
+}
+
+service WorkerMasterService {
 
 }

@@ -5,13 +5,11 @@
 
 package com.ziyue.website.common.rpc;
 
-public abstract class RPCServer {
-    public enum rpcType {
-        GRPC, THRIFT, DUBBO,
-    }
-    abstract rpcType getServiceType();
+public interface RPCServer {
 
-    abstract void stop();
+    public abstract AbstractRPCServer.rpcType getServiceType();
 
-    abstract void start();
+    public abstract void stop();
+
+    public abstract void start();
 }

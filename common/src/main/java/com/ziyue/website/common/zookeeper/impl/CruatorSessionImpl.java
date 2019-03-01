@@ -30,7 +30,7 @@ public class CruatorSessionImpl extends AbstractZKSession implements ZKSession {
     }
 
     @Override
-    public void createDir(String path) {
+    public void registDir(String path) {
 
     }
 

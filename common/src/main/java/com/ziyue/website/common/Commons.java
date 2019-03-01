@@ -8,7 +8,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -36,8 +35,13 @@ public class Commons {
     @Value("${website.master.zookeeper.root.path:/website/master}")
     private String MASTER_ZOOKEEPER_ROOT_PATH;
 
+    // httpServer to master
     @Value("${website.master.rpc.server.port:9999}")
     private int MASTER_RPC_SERVER_PORT;
+
+    // worker to master
+    @Value("${website.master.rpc.worker.port:9991}")
+    private int MASTER_PRC_WORKER_PORT;
 
 
     /*
@@ -78,7 +82,6 @@ public class Commons {
 
     private static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private static final SimpleDateFormat format = new SimpleDateFormat(Commons.TIME_FORMAT);
-    private Logger e;
 
     public static String TIME_STAMP() {
         return format.format(System.currentTimeMillis());

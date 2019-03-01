@@ -10,21 +10,16 @@ package com.ziyue.website.master.rpc;
 
 import org.springframework.stereotype.Component;
 
+import com.ziyue.website.common.rpc.MasterHttpServiceGrpc;
+import com.ziyue.website.common.rpc.RPCCommon;
+
+import io.grpc.stub.StreamObserver;
+
 @Component
-public class MasterServerHandler extends AbstractRPCHandler{
+public class MasterServerHandler extends MasterHttpServiceGrpc.MasterHttpServiceImplBase {
 
     @Override
-    public boolean init() {
-        return false;
-    }
-
-    @Override
-    public boolean start() {
-        return false;
-    }
-
-    @Override
-    public boolean stop() {
-        return false;
+    public void getMasterStatus(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
+        super.getMasterStatus(request, responseObserver);
     }
 }
