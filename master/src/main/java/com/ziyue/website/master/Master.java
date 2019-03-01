@@ -45,7 +45,9 @@ public class Master implements CommandLineRunner {
 
     private void start() {
         try {
+            log.info("try to start masterWorkerServer");
             this.masterWorkerServer.start();
+            log.info("try to start masterHttpServer");
             this.masterHttpServer.start();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
