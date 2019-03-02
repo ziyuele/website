@@ -57,6 +57,7 @@ public class Commons {
     /*
     this is common module
      */
+    /* zookeeper */
     @Value("${website.common.zookeeper.implement.type:zookeeper}")
     private String ZOOKEEPER_IMPLEMENT_TYPE;
 
@@ -66,13 +67,25 @@ public class Commons {
     @Value("${website.common.zookeeper.server.port:8181}")
     private int ZOOKEEPER_SERVER_PORT;
 
-    @Value("${website.common.zookeeper.session.timout:10000}")
+    @Value("${website.common.zookeeper.session.timeout:10000}")
     private int ZOOKEEPER_SESSION_TIMEOUT;
 
     @Value("${website.common.devault.charset.encoding:UTF-8}")
     private String DEFAULT_CHARSET_ENCODING;
 
+    /* database */
+    // jdbc url
+    @Value("${website.common.database.url:jdbc:mysql://140.143.132.21:8806/website}")
+    private String DATABASE_URL;
 
+    @Value("${website.common.database.password:root}")
+    private String DATABASE_PASSWORD;
+
+    @Value("${website.common.database.username:root}")
+    private String DATABASE_USERNAME;
+
+    @Value("${website.common.database.connect.pool.num:10}")
+    private String DATABASE_CONNECT_POOL_NUM;
     /*
     this is default setting that can not be change
      */

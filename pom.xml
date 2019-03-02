@@ -32,10 +32,12 @@
         <mvn.compile.version>3.5.1</mvn.compile.version>
         <lombok.version>1.16.18</lombok.version>
         <junit.version>4.12</junit.version>
-        <springframework.version>1.3.8.RELEASE</springframework.version>
+        <springframework.version>2.0.4.RELEASE</springframework.version>
         <xolstice.version>0.5.0</xolstice.version>
         <kr.motd.version>1.5.0.Final</kr.motd.version>
         <zookeeper.version>3.4.10</zookeeper.version>
+        <mysql.connector.version>5.1.46</mysql.connector.version>
+        <spring.log4j.version>1.3.8.RELEASE</spring.log4j.version>
     </properties>
 
     <dependencies>
@@ -53,7 +55,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j</artifactId>
+            <version>${spring.log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <version>${springframework.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
