@@ -27,7 +27,7 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "id")
 @Entity
 @Table(name = "website_documents")
 public class Documents implements Serializable {

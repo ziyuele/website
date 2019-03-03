@@ -7,27 +7,30 @@ package com.ziyue.website.master.database.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import com.ziyue.website.master.database.dao.Documents;
 
 @Component
+@Transactional
 public interface DocumentsRepo extends JpaRepository<Documents, Long> {
 
     // add update
     @Override
     <S extends Documents> S save(S s);
 
-    List<Documents> getByAuthor();
+    List<Documents> getAllByAuthor(String author);
 
-    Documents getById();
+    Documents getById(long id);
 
-    Documents getByTitle();
+    Documents getByTitle(String title);
 
-    void deleteById();
+    void deleteById(long id);
 
-    void deleteByAuthor();
+    void deleteAllByAuthor(String author);
 
     @Override
     void deleteAll();
