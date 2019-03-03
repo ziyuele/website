@@ -70,6 +70,9 @@ public class Commons {
     @Value("${website.common.zookeeper.session.timeout:10000}")
     private int ZOOKEEPER_SESSION_TIMEOUT;
 
+    @Value("${website.comm.zookeeper.sych.session.time.ms:30000}")
+    private long ZOOKEEPER_SYCH_SESSION_TIME_MS;
+
     @Value("${website.common.devault.charset.encoding:UTF-8}")
     private String DEFAULT_CHARSET_ENCODING;
 

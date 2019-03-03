@@ -1,5 +1,7 @@
 package com.ziyue.website.master;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,6 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
 import com.ziyue.website.common.Commons;
 import com.ziyue.website.common.rpc.GRPCServerImpl;
 import com.ziyue.website.common.rpc.RPCServer;
+import com.ziyue.website.common.zookeeper.SessionFactory;
+import com.ziyue.website.common.zookeeper.ZKSession;
 import com.ziyue.website.master.rpc.MasterServerHandler;
 import com.ziyue.website.master.rpc.MasterWorkerHandler;
 
@@ -22,10 +26,12 @@ public class Master implements CommandLineRunner {
    private RPCServer masterHttpServer;
    private RPCServer masterWorkerServer;
    private Commons commons;
+   private ZKSession zkSession;
 
     @Autowired
-    public Master(Commons commons) {
+    public Master(Commons commons, SessionFactory factory) {
         this.commons = commons;
+        this.zkSession = factory.getSession();
     }
 
     private void init() {
@@ -41,6 +47,10 @@ public class Master implements CommandLineRunner {
         masterWorkerArgs.service = new MasterWorkerHandler();
         this.masterWorkerServer = new GRPCServerImpl(masterWorkerArgs);
 
+        // register master to zookeeper
+        String masterId = UUID.randomUUID().toString().replaceAll("-", "");
+        zkSession.registerDir(commons.getMASTER_ZOOKEEPER_ROOT_PATH() + "/" + masterId,
+                commons.HOST_ADDRESS() + ":" + commons.getMASTER_RPC_SERVER_PORT());
     }
 
     private void start() {

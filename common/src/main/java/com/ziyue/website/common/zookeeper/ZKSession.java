@@ -30,8 +30,11 @@ public interface ZKSession {
     /**
      * create a dir
      * @param path zk path
+     * @param data to write
+     *
+     * this method only used to register master worker
      */
-    void registDir(String path);
+    void registerDir(String path, String data);
 
     /**
      * delete a node

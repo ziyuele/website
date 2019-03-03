@@ -86,12 +86,26 @@ public class ZookeeperSessionImpl extends AbstractZKSession implements ZKSession
     }
 
     @Override
-    public void registDir(String path) {
+    public void registerDir(String path, String data) {
         String [] nodes = path.split("/");
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < nodes.length - 1; i ++ ) {
+        for (int i = 1; i < nodes.length - 1; i ++ ) {
             stringBuilder.append("/").append(nodes[i]);
-            create(path.toLowerCase().toString());
+            String dataPath = stringBuilder.toString().toLowerCase();
+            create(dataPath);
+        }
+        try {
+            new ZKAction<Void>() {
+                // 连接断开，数据删除， 非持久化存储
+                @Override
+                Void run() throws Exception {
+                    zkClient.create(path, data.getBytes(defaultCharset),ZooDefs.Ids.OPEN_ACL_UNSAFE,CreateMode
+                            .EPHEMERAL);
+                    return null;
+                }
+            }.action();
+        } catch (Exception e) {
+           log.warn(e.getMessage(), e);
         }
     }
 
