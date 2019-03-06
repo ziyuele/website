@@ -20,6 +20,8 @@ public class MasterServerHandler extends MasterHttpServiceGrpc.MasterHttpService
 
     @Override
     public void getMasterStatus(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
-        super.getMasterStatus(request, responseObserver);
+        RPCCommon.Response.Builder response = RPCCommon.Response.newBuilder();
+        responseObserver.onNext(response.build());
+        responseObserver.onCompleted();
     }
 }
