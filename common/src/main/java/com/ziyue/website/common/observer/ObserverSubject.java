@@ -17,17 +17,18 @@ public abstract class ObserverSubject {
         this.observers.add(observer);
     }
 
-    // 像观察者发送消息
+    // 任务派发给响应的观察者去处理消息
     public void notifyObservers(String observerType) {
         for(Observer o : observers) {
             if (o.observerType().equals(observerType)) {
+                o.preRun();
                 o.run();
+                o.postRun();
                 return;
             }
         }
     }
 
-    // used to start 观察者
-    public abstract Object put();
-
+    // 调用接口 发布消息
+    public abstract void post(Object o);
 }

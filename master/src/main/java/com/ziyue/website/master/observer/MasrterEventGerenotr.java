@@ -5,8 +5,14 @@
 
 package com.ziyue.website.master.observer;
 
+import org.springframework.stereotype.Component;
+
 import com.ziyue.website.common.observer.ObserverSubject;
 
-public abstract class MasterObserverSubject extends ObserverSubject {
+@Component
+public class MasrterEventGerenotr extends ObserverSubject {
+
+    public void post(Object o) {
+    }
 
 }

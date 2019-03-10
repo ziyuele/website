@@ -8,20 +8,29 @@
 
 package com.ziyue.website.master.rpc;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ziyue.website.common.rpc.MasterHttpServiceGrpc;
 import com.ziyue.website.common.rpc.RPCCommon;
+import com.ziyue.website.master.observer.MasrterEventGerenotr;
+import com.ziyue.website.master.observer.ObserverEvent.MasterStatusEvent;
 
 import io.grpc.stub.StreamObserver;
 
 @Component
 public class MasterServerHandler extends MasterHttpServiceGrpc.MasterHttpServiceImplBase {
 
+
+    MasrterEventGerenotr masrterEventGerenotr;
+
+    @Autowired
+    public MasterServerHandler(MasrterEventGerenotr masrterEventGerenotr) {
+       this.masrterEventGerenotr = masrterEventGerenotr;
+    }
+
     @Override
     public void getMasterStatus(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
-        RPCCommon.Response.Builder response = RPCCommon.Response.newBuilder();
-        responseObserver.onNext(response.build());
-        responseObserver.onCompleted();
+        masrterEventGerenotr.post(new MasterStatusEvent(request, responseObserver));
     }
 }
