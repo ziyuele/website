@@ -35,3 +35,12 @@ message Request {
 message Response {
 
 }
+
+/* blog */
+message BlogResponse {
+
+}
+
+message BlogRequest {
+
+}

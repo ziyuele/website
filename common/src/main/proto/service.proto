@@ -10,6 +10,13 @@ import "common.proto";
 // httpServr to master
 service MasterHttpService {
    rpc  getMasterStatus(Request) returns (Response){};
+
+   // blog support
+   rpc addBlog(BlogRequest) returns(Response) {};
+   rpc updateBlog(Request) returns(Response){};
+   rpc deleteBlog(Request) returns(Response){};
+   rpc getBlog(Request) returns(Response){};
+   rpc listBlog(Request) returns(Response){};
 }
 
 //  Master to worker
