@@ -20,12 +20,7 @@ public abstract class ObserverSubject {
     // 任务派发给响应的观察者去处理消息
     public void notifyObservers(String observerType) {
         for(Observer o : observers) {
-            if (o.observerType().equals(observerType)) {
-                o.preRun();
-                o.run();
-                o.postRun();
-                return;
-            }
+           System.out.println("ddd");
         }
     }
 

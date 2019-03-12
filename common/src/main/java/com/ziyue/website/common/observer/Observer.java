@@ -7,11 +7,9 @@ package com.ziyue.website.common.observer;
 // 观察者 另一个层面可以理解为消费者
 public interface Observer {
 
-    String observerType();
-
     void preRun();
 
     void postRun();
 
-    void run();
+    void run(Event e);
 }

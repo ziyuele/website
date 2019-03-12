@@ -5,6 +5,13 @@
 
 package com.ziyue.website.common.observer;
 
+import java.util.UUID;
+
 public abstract class Event {
-    private String EventType;
+
+    // 用来标示event的唯一Id
+    private final String eventId;
+    public Event() {
+        this.eventId = UUID.randomUUID().toString().replace("_", "");
+    }
 }

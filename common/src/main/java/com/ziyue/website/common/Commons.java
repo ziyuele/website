@@ -43,6 +43,9 @@ public class Commons {
     @Value("${website.master.rpc.worker.port:9991}")
     private int MASTER_PRC_WORKER_PORT;
 
+    @Value("${website.master.thread.pool.size:1000}")
+    private int MASTER_THREAD_POOL_SIZE;
+
 
     /*
     this is worker module

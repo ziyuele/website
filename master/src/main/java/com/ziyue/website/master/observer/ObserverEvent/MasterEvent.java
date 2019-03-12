@@ -5,8 +5,16 @@
 
 package com.ziyue.website.master.observer.ObserverEvent;
 
-import com.ziyue.website.common.observer.Event;
+import com.ziyue.website.common.observer.RPCEvent;
+import com.ziyue.website.common.rpc.RPCCommon;
 
-public class MasterEvent extends Event {
+import io.grpc.stub.StreamObserver;
 
+public abstract class MasterEvent extends RPCEvent {
+
+    public MasterEvent(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
+        super(request, responseObserver);
+    }
+
+    public abstract void runInterval();
 }
