@@ -13,14 +13,14 @@ import com.ziyue.website.common.rpc.RPCCommon;
 @Component
 public class NormalRpcClient {
 
-    private MasterHttpServiceGrpc.MasterHttpServiceBlockingStub serviceBlockingStub;
+    private final ClientProtoHandler handler;
 
     public NormalRpcClient(ClientProtoHandler handler) {
-       this.serviceBlockingStub = handler.getStub();
+       this.handler = handler;
     }
 
     public RPCCommon.Response getMasterStatus () {
         RPCCommon.Request request = RPCCommon.Request.newBuilder().setOption("query-master").build();
-        return serviceBlockingStub.getMasterStatus(request);
+        return handler.getStub().getMasterStatus(request);
     }
 }
