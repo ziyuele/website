@@ -14,9 +14,9 @@ cd $(cd `dirname "$0"`; pwd)
 
 function exit_with_usage(){
     echo "usage: sh build.sh"
-    echo "\t --test"
-    echo "\t --compile"
-    echo "\t --build"
+    echo -e "\t --test"
+    echo -e "\t --compile"
+    echo -e "\t --build"
 }
 
 function build(){
