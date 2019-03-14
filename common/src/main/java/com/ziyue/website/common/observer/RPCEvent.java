@@ -29,10 +29,8 @@ public class RPCEvent extends Event{
             return EventType.PING;
         } else if (type == RPCCommon.RequestConfigrationType.NORMAL) {
             return EventType.NORMAL;
-        } else if (type == RPCCommon.RequestConfigrationType.OTHER) {
-            return EventType.OTHER;
         } else {
-            throw new RuntimeException("Unsupported request type" + type);
+            return EventType.OTHER;
         }
     }
 }

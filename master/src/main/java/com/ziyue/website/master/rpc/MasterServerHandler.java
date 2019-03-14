@@ -16,7 +16,9 @@ import com.ziyue.website.master.observer.MasrterEventGerenotr;
 import com.ziyue.website.master.observer.ObserverEvent.MasterStatusEvent;
 
 import io.grpc.stub.StreamObserver;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MasterServerHandler extends MasterHttpServiceGrpc.MasterHttpServiceImplBase {
 
 
@@ -29,6 +31,7 @@ public class MasterServerHandler extends MasterHttpServiceGrpc.MasterHttpService
 
     @Override
     public void getMasterStatus(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
+        log.info("this is a test");
         masrterEventGerenotr.post(new MasterStatusEvent(request, responseObserver));
     }
 }

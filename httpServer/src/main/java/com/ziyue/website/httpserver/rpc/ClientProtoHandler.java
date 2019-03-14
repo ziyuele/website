@@ -38,6 +38,7 @@ public class ClientProtoHandler implements Runnable{
     }
 
     public MasterHttpServiceGrpc.MasterHttpServiceBlockingStub getStub() {
+        log.info(masters.toString());
         if (masters.isEmpty()) {
             throw new NoMasterException("master is empty");
         }

@@ -24,13 +24,12 @@ public class NormalExecutionPool implements Observer {
 
     private Commons commons;
 
+    private final ScheduledThreadPoolExecutor scheduledThreadPoolExecutor;
     @Autowired
     public NormalExecutionPool(Commons commons) {
        this.commons = commons;
+       this.scheduledThreadPoolExecutor = new ScheduledThreadPoolExecutor(commons.getMASTER_THREAD_POOL_SIZE());
     }
-
-    ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = new
-            ScheduledThreadPoolExecutor(commons.getMASTER_THREAD_POOL_SIZE());
 
     @Override
     public void preRun() {

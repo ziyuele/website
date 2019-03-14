@@ -13,7 +13,10 @@ import com.ziyue.website.common.observer.EventType;
 import com.ziyue.website.common.observer.ObserverSubject;
 import com.ziyue.website.master.executor.NormalExecutionPool;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class MasrterEventGerenotr extends ObserverSubject {
 
     @Autowired

@@ -20,6 +20,7 @@ public class NormalRpcClient {
     }
 
     public RPCCommon.Response getMasterStatus () {
+
         RPCCommon.Request request = RPCCommon.Request.newBuilder().setOption("query-master").build();
         return handler.getStub().getMasterStatus(request);
     }
