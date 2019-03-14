@@ -5,14 +5,23 @@
 
 package com.ziyue.website.master.observer;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ziyue.website.common.observer.Event;
+import com.ziyue.website.common.observer.EventType;
 import com.ziyue.website.common.observer.ObserverSubject;
+import com.ziyue.website.master.executor.NormalExecutionPool;
 
 @Component
 public class MasrterEventGerenotr extends ObserverSubject {
 
-    public void post(Object o) {
+    @Autowired
+    public MasrterEventGerenotr(NormalExecutionPool normalExecutionPool) {
+        addObserver(EventType.NORMAL, normalExecutionPool);
+    }
+    public void post(Event event) {
+        notifyObservers(event);
     }
 
 }

@@ -15,25 +15,26 @@ enum RequestConfigrationType {
    JOB = 0;
    META = 1;
    PING = 2;
-   OTHER = 3;
+   NORMAL = 3;
+   OTHER = 4;
 }
 
-message GRequestConfigration {
-    ErrorCode error = 1;
-    RequestConfigrationType requestType = 2;
+message Configuration {
+    RequestConfigrationType type = 1;
+    string time = 2;
+    string endTime = 3;
 }
 
 // Unified Message Request Architecture
 message Request {
-  ErrorCode errorCode = 1;
-  string startTime = 2;
-  string endTime = 3;
-  GRequestConfigration config = 4;
+    Configuration config = 1;
+    string option = 2;
 }
 
 //  Unified Message Response Architecture
 message Response {
-
+    string version = 1;
+    Configuration config = 2;
 }
 
 /* blog */

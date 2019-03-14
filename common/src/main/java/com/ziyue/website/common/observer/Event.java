@@ -9,9 +9,11 @@ import java.util.UUID;
 
 public abstract class Event {
 
+    EventType eventType;
     // 用来标示event的唯一Id
-    private final String eventId;
-    public Event() {
+    public final String eventId;
+    public Event(EventType eventType) {
         this.eventId = UUID.randomUUID().toString().replace("_", "");
+        this.eventType = eventType;
     }
 }

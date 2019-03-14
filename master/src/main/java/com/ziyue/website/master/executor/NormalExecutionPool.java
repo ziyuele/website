@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.ziyue.website.common.Commons;
 import com.ziyue.website.common.observer.Event;
 import com.ziyue.website.common.observer.Observer;
+import com.ziyue.website.common.rpc.RPCCommon;
 import com.ziyue.website.master.observer.ObserverEvent.MasterEvent;
 
 import lombok.extern.slf4j.Slf4j;
@@ -55,9 +56,9 @@ public class NormalExecutionPool implements Observer {
 
         @Override
         public void run() {
-            e.runInterval();
+            Object ret = e.runInterval();
             e.responseObserver.onCompleted();
-            e.responseObserver.onNext(null);
+            e.responseObserver.onNext((RPCCommon.Response) ret);
         }
     }
 }

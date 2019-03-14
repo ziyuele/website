@@ -16,5 +16,5 @@ public abstract class MasterEvent extends RPCEvent {
         super(request, responseObserver);
     }
 
-    public abstract void runInterval();
+    public abstract Object runInterval();
 }

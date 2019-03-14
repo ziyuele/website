@@ -6,24 +6,23 @@
 package com.ziyue.website.common.observer;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 // 被观察者， 另一个层面可以被理解为生产者
 public abstract class ObserverSubject {
 
-    private ArrayList<Observer> observers = new ArrayList<>();
+    private HashMap<EventType, Observer> observers = new HashMap<>();
 
     // add Observer
-    public void addObserver(Observer observer) {
-        this.observers.add(observer);
+    public void addObserver(EventType eventType, Observer observer) {
+        this.observers.put(eventType, observer);
     }
 
     // 任务派发给响应的观察者去处理消息
-    public void notifyObservers(String observerType) {
-        for(Observer o : observers) {
-           System.out.println("ddd");
-        }
+    public void notifyObservers(Event event) {
+        observers.get(event.eventType).run(event);
     }
 
     // 调用接口 发布消息
-    public abstract void post(Object o);
+    public abstract void post(Event event);
 }

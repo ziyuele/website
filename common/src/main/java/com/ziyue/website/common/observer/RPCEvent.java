@@ -14,7 +14,26 @@ public class RPCEvent extends Event{
     public StreamObserver<RPCCommon.Response> responseObserver;
 
     public RPCEvent(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver){
+        super(getType(request));
         this.request = request;
         this.responseObserver = responseObserver;
     }
+
+    private static EventType getType(RPCCommon.Request request) {
+        RPCCommon.RequestConfigrationType type = request.getConfig().getType();
+        if (type == RPCCommon.RequestConfigrationType.JOB) {
+            return EventType.JOB;
+        } else if (type == RPCCommon.RequestConfigrationType.META) {
+            return EventType.META;
+        } else if (type == RPCCommon.RequestConfigrationType.PING) {
+            return EventType.PING;
+        } else if (type == RPCCommon.RequestConfigrationType.NORMAL) {
+            return EventType.NORMAL;
+        } else if (type == RPCCommon.RequestConfigrationType.OTHER) {
+            return EventType.OTHER;
+        } else {
+            throw new RuntimeException("Unsupported request type" + type);
+        }
+    }
 }
+
