@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.ziyue.website.common.Commons;
+import com.ziyue.website.common.rpc.MasterHttpServiceGrpc;
 import com.ziyue.website.common.rpc.MasterWorkerServiceGrpc;
 import com.ziyue.website.common.zookeeper.SessionFactory;
 import com.ziyue.website.common.zookeeper.ZKSession;
@@ -36,19 +37,19 @@ public class ClientProtoHandler implements Runnable{
        this.zkSession = factory.getSession();
     }
 
-    public MasterWorkerServiceGrpc.MasterWorkerServiceBlockingStub getStub() {
+    public MasterHttpServiceGrpc.MasterHttpServiceBlockingStub getStub() {
         if (masters.isEmpty()) {
             throw new NoMasterException("master is empty");
         }
         if (this.managedChannel != null) {
-            return MasterWorkerServiceGrpc.newBlockingStub(managedChannel);
+            return MasterHttpServiceGrpc.newBlockingStub(managedChannel);
         } else {
             // TODO there need a schedue calcuter
             String master = masters.get((int)(Math.random() * masters.size()));
             String masterHost[] = master.split(":");
             int port = Integer.parseInt(masterHost[1]);
             this.managedChannel = ManagedChannelBuilder.forAddress(masterHost[0], port).usePlaintext(true).build();
-            return MasterWorkerServiceGrpc.newBlockingStub(managedChannel);
+            return MasterHttpServiceGrpc.newBlockingStub(managedChannel);
         }
     }
 

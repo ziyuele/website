@@ -8,8 +8,10 @@
 
 package com.ziyue.website.master.rpc;
 
+import com.ziyue.website.common.observer.EventType;
 import com.ziyue.website.common.rpc.MasterHttpServiceGrpc;
 import com.ziyue.website.common.rpc.RPCCommon;
+import com.ziyue.website.master.executor.NormalExecutionPool;
 import com.ziyue.website.master.observer.MasrterEventGerenotr;
 import com.ziyue.website.master.observer.ObserverEvent.MasterStatusEvent;
 
@@ -20,8 +22,9 @@ public class MasterServerHandler extends MasterHttpServiceGrpc.MasterHttpService
 
     MasrterEventGerenotr masrterEventGerenotr;
 
-    public MasterServerHandler(MasrterEventGerenotr masrterEventGerenotr) {
+    public MasterServerHandler(MasrterEventGerenotr masrterEventGerenotr, NormalExecutionPool normalExecutionPool) {
        this.masrterEventGerenotr = masrterEventGerenotr;
+       masrterEventGerenotr.addObserver(EventType.NORMAL, normalExecutionPool);
     }
 
     @Override

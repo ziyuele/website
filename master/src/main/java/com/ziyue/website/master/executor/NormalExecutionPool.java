@@ -34,7 +34,6 @@ public class NormalExecutionPool implements Observer {
 
     @Override
     public void preRun() {
-
     }
 
     @Override
@@ -44,7 +43,10 @@ public class NormalExecutionPool implements Observer {
 
     @Override
     public void run(Event e) {
+        log.info("add action {} to work", e.eventId);
+        postRun();
         scheduledThreadPoolExecutor.execute(new Executor((MasterEvent) e));
+        preRun();
     }
 
     class Executor implements Runnable {

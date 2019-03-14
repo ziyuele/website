@@ -8,7 +8,9 @@ package com.ziyue.website.master.observer.ObserverEvent;
 import com.ziyue.website.common.rpc.RPCCommon;
 
 import io.grpc.stub.StreamObserver;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class MasterStatusEvent extends MasterEvent {
     public MasterStatusEvent(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
         super(request, responseObserver);
@@ -16,6 +18,7 @@ public class MasterStatusEvent extends MasterEvent {
 
     @Override
     public Object runInterval() {
-       return null;
+        log.info("this is MasterStatusEvent");
+        return null;
     }
 }
