@@ -13,6 +13,7 @@ import com.ziyue.website.common.rpc.GRPCServerImpl;
 import com.ziyue.website.common.rpc.RPCServer;
 import com.ziyue.website.common.zookeeper.SessionFactory;
 import com.ziyue.website.common.zookeeper.ZKSession;
+import com.ziyue.website.master.executor.NormalExecutionPool;
 import com.ziyue.website.master.observer.MasrterEventGerenotr;
 import com.ziyue.website.master.rpc.MasterServerHandler;
 import com.ziyue.website.master.rpc.MasterWorkerHandler;
@@ -29,19 +30,22 @@ public class Master implements CommandLineRunner {
    private Commons commons;
    private ZKSession zkSession;
    private MasrterEventGerenotr masrterEventGerenotr;
+   private NormalExecutionPool normalExecutionPool;
 
     @Autowired
-    public Master(Commons commons, SessionFactory factory, MasrterEventGerenotr masrterEventGerenotr) {
+    public Master(Commons commons, SessionFactory factory, MasrterEventGerenotr masrterEventGerenotr,
+    NormalExecutionPool normalExecutionPool) {
         this.commons = commons;
         this.zkSession = factory.getSession();
         this.masrterEventGerenotr = masrterEventGerenotr;
+        this.normalExecutionPool = normalExecutionPool;
     }
 
     private void init() {
         // init master-http server
         GRPCServerImpl.Args MasterServerArgs = new GRPCServerImpl.Args();
         MasterServerArgs.port = commons.getMASTER_RPC_SERVER_PORT();
-        MasterServerArgs.service = new MasterServerHandler(masrterEventGerenotr);
+        MasterServerArgs.service = new MasterServerHandler(masrterEventGerenotr, normalExecutionPool);
         this.masterHttpServer = new GRPCServerImpl(MasterServerArgs);
 
         // init master-worker server
