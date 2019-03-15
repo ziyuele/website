@@ -1,5 +1,7 @@
 package com.ziyue.website.httpserver.controler;
 
+import com.google.protobuf.Message;
+import com.googlecode.protobuf.format.JsonFormat;
 import com.ziyue.website.common.Commons;
 
 import lombok.Getter;
@@ -16,8 +18,18 @@ public class Response {
     private Response(String message, Integer status, Object data) {
         this.message = message;
         this.status = status;
-        this.data = data;
+        // this.data = data;data;
         this.timestamp = Commons.TIME_STAMP();
+        if (data.getClass().getName().contains("com.ziyue.website.common.rpc")) {
+            try {
+                this.data = JsonFormat.printToString((Message) data);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            this.data = data;
+        }
+
     }
 
     public static Response ok(Object o) {

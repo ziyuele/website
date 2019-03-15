@@ -5,6 +5,9 @@
 
 package com.ziyue.website.master.observer.ObserverEvent;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.ziyue.website.common.Commons;
 import com.ziyue.website.common.rpc.RPCCommon;
 
 import io.grpc.stub.StreamObserver;
@@ -12,6 +15,10 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class MasterStatusEvent extends MasterEvent {
+
+    @Autowired
+    Commons commons;
+
     public MasterStatusEvent(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
         super(request, responseObserver);
     }
@@ -19,6 +26,9 @@ public class MasterStatusEvent extends MasterEvent {
     @Override
     public Object runInterval() {
         log.info("this is MasterStatusEvent");
-        return RPCCommon.Response.newBuilder().build();
+        return RPCCommon.Response.newBuilder()
+                .setConfig(request.getConfig())
+                .setVersion(commons.VERSION())
+                .build();
     }
 }

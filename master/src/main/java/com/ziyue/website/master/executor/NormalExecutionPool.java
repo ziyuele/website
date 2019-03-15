@@ -58,8 +58,8 @@ public class NormalExecutionPool implements Observer {
         @Override
         public void run() {
             Object ret = e.runInterval();
-            e.responseObserver.onCompleted();
             e.responseObserver.onNext((RPCCommon.Response) ret);
+            e.responseObserver.onCompleted();
         }
     }
 }

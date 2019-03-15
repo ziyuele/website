@@ -92,5 +92,11 @@
             <artifactId>common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <!-- response from master is java use this plugin to transform protobuf to json -->
+        <dependency>
+            <groupId>com.googlecode.protobuf-java-format</groupId>
+            <artifactId>protobuf-java-format</artifactId>
+            <version>${proto.java.format.version}</version>
+        </dependency>
     </dependencies>
 </project>
