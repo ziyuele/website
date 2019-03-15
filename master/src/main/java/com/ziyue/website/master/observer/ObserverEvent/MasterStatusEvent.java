@@ -19,6 +19,6 @@ public class MasterStatusEvent extends MasterEvent {
     @Override
     public Object runInterval() {
         log.info("this is MasterStatusEvent");
-        return null;
+        return RPCCommon.Response.newBuilder().build();
     }
 }
