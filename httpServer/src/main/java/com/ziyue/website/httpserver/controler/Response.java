@@ -1,5 +1,6 @@
 package com.ziyue.website.httpserver.controler;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 import com.googlecode.protobuf.format.JsonFormat;
 import com.ziyue.website.common.Commons;
@@ -18,17 +19,18 @@ public class Response {
     private Response(String message, Integer status, Object data) {
         this.message = message;
         this.status = status;
-        // this.data = data;data;
-        this.timestamp = Commons.TIME_STAMP();
+        // 如果返回的结果有proto 将其转化为json输出
         if (data.getClass().getName().contains("com.ziyue.website.common.rpc")) {
             try {
-                this.data = JsonFormat.printToString((Message) data);
+                this.data = new ObjectMapper().readTree(JsonFormat.printToString((Message) data));
             } catch (Exception e) {
-                e.printStackTrace();
+                this.data = data.toString();
             }
         } else {
             this.data = data;
         }
+        this.timestamp = Commons.TIME_STAMP();
+
 
     }
 
