@@ -5,10 +5,12 @@
 
 package com.ziyue.website.common.observer;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
+import lombok.extern.slf4j.Slf4j;
+
 // 被观察者， 另一个层面可以被理解为生产者
+@Slf4j
 public abstract class ObserverSubject {
 
     private HashMap<EventType, Observer> observers = new HashMap<>();
@@ -20,6 +22,9 @@ public abstract class ObserverSubject {
 
     // 任务派发给响应的观察者去处理消息
     public void notifyObservers(Event event) {
+        if (observers.get(event.eventType) == null) {
+            log.warn("no observer found!!!");
+        }
         observers.get(event.eventType).run(event);
     }
 
