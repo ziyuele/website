@@ -1,5 +1,7 @@
 package com.ziyue.website.httpserver.controler;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.protobuf.Message;
 import com.googlecode.protobuf.format.JsonFormat;
@@ -7,10 +9,13 @@ import com.ziyue.website.common.Commons;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-public class Response {
+@ToString
+public class Response implements Serializable {
+
     private String message;
     private Integer status;
     private Object data;

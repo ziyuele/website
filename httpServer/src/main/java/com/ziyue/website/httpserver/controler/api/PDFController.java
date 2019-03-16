@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ziyue.website.common.Commons;
 import com.ziyue.website.httpserver.controler.Response;
 
@@ -101,9 +102,14 @@ public class PDFController {
     @GetMapping("/pdfs/{fileName}")
     public void getPdfs(@PathVariable String fileName, HttpServletResponse response) {
         try {
-
-            response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
             File f = new File(commons.getSERVER_DATAFILE_PATH() + "/" + fileName);
+            if (!f.exists()) {
+                response.setHeader("Content-type", "application/json");
+                Writer writer = response.getWriter();
+                writer.write(new ObjectMapper().writeValueAsString(Response.error("pdf document not exists")));
+                writer.close();
+            }
+            response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
             BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f));
             OutputStream outputStream = response.getOutputStream();
             byte bytes [] = new byte[2014];
@@ -122,13 +128,15 @@ public class PDFController {
     @GetMapping("/pdfs/{fileName}/view")
     public void viewPdfs(@PathVariable String fileName, HttpServletResponse response) {
         try {
-            response.addHeader("Content-Disposition", "inline;fileName=" + fileName);
             File f = new File(commons.getSERVER_DATAFILE_PATH() + "/" + fileName);
             if (!f.exists()) {
+                log.error("file : {} not exist", fileName);
+                response.setHeader("Content-type", "application/json");
                 Writer writer = response.getWriter();
-                writer.write(Response.error("pdf document not exists").toString());
+                writer.write(new ObjectMapper().writeValueAsString(Response.error("pdf document not exists")));
                 writer.close();
             }
+            response.addHeader("Content-Disposition", "inline;fileName=" + fileName);
             BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f));
             OutputStream outputStream = response.getOutputStream();
             byte bytes [] = new byte[2014];
