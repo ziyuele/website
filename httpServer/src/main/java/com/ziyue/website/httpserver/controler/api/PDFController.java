@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.Writer;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -123,6 +124,11 @@ public class PDFController {
         try {
             response.addHeader("Content-Disposition", "inline;fileName=" + fileName);
             File f = new File(commons.getSERVER_DATAFILE_PATH() + "/" + fileName);
+            if (!f.exists()) {
+                Writer writer = response.getWriter();
+                writer.write(Response.error("pdf document not exists").toString());
+                writer.close();
+            }
             BufferedInputStream inputStream = new BufferedInputStream(new FileInputStream(f));
             OutputStream outputStream = response.getOutputStream();
             byte bytes [] = new byte[2014];
