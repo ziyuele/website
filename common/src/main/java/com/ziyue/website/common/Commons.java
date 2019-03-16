@@ -76,11 +76,19 @@ public class Commons {
     @Value("${website.common.zookeeper.session.timeout:10000}")
     private int ZOOKEEPER_SESSION_TIMEOUT;
 
-    @Value("${website.comm.zookeeper.sych.session.time.ms:30000}")
+    @Value("${website.common.zookeeper.sych.session.time.ms:30000}")
     private long ZOOKEEPER_SYCH_SESSION_TIME_MS;
 
     @Value("${website.common.devault.charset.encoding:UTF-8}")
     private String DEFAULT_CHARSET_ENCODING;
+
+    /* this is sso module */
+
+    @Value("${website.sso.zookeeper.root.path:/website/sso}")
+    private String SSO_ZOOKEEPER_ROOT_PATH;
+
+    @Value("${website.sso.rpc.port:9997}")
+    private String SSO_RPC_PORT;
 
     /* database */
     // jdbc url

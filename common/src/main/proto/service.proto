@@ -27,3 +27,10 @@ service MasterWorkerService {
 service WorkerMasterService {
 
 }
+
+// httpServer to sso
+
+service ServerSSOService {
+
+}
+
