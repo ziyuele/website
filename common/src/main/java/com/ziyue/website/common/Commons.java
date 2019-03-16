@@ -29,6 +29,9 @@ public class Commons {
       this is httpServer module
      */
 
+    @Value("${website.server.datafile.path:/tmp}")
+    private String SERVER_DATAFILE_PATH;
+
     /*
     this is master module
      */
