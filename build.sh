@@ -28,6 +28,7 @@ function build(){
     mkdir -p output/httpServer
     mkdir -p output/master
     mkdir -p output/worker
+    mkdir -p output/sso
     # set httpServer
     cd httpServer/target
     mv conf lib bin httpServer-*.jar ../../output/httpServer && cd -

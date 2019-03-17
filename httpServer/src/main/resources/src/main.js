@@ -6,10 +6,12 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 import PDFS from './pdfs.vue';
+import HOME from './home.vue';
 
 const vueRouter = [
+    { path: '/home', component: HOME },
     { path:'/v1/pdfs', component: PDFS  }
-]
+];
 
 
 Vue.use(ElementUI);
@@ -17,10 +19,10 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes: vueRouter
-})
+});
 
 var app = new Vue({
   el: '#web-site',
   router: router,
   render: h => h(Index)
-})
+});
