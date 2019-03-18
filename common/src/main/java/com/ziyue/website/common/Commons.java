@@ -103,6 +103,12 @@ public class Commons {
 
     @Value("${website.common.database.connect.pool.num:10}")
     private String DATABASE_CONNECT_POOL_NUM;
+
+    /* fileServer */
+
+    @Value("${website.fileserver.rpc.port:9996}")
+    private int FILE_SERVER_RPC_PORT;
+
     /*
     this is default setting that can not be change
      */

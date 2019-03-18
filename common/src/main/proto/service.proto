@@ -6,6 +6,7 @@ option java_package = "com.ziyue.website.common.rpc";
 option java_outer_classname = "RPCService";
 
 import "common.proto";
+import "fileServer.proto";
 
 // httpServr to master
 service MasterHttpService {
@@ -32,5 +33,11 @@ service WorkerMasterService {
 
 service ServerSSOService {
 
+}
+
+service FileService {
+    rpc addFile(AddFileRequest) returns (AddFileRespose);
+    rpc deleteFile(DeleteFileRequest) returns (DeleteFileResponse);
+    rpc getFile(GetFileRequest) returns (GetFileResponse);
 }
 

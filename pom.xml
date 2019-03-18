@@ -15,6 +15,7 @@
        <module>master</module>
        <module>worker</module>
        <module>sso</module>
+       <module>fileServer</module>
    </modules>
 
    <parent>
