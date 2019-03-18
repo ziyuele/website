@@ -9,7 +9,7 @@ import PDFS from './pdfs.vue';
 import HOME from './home.vue';
 
 const vueRouter = [
-    { path: '/home', component: HOME },
+    { path: '/', component: HOME },
     { path:'/v1/pdfs', component: PDFS  }
 ];
 
