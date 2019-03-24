@@ -5,18 +5,31 @@
 
 package com.ziyue.fileserver.rpc;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.ziyue.fileserver.observer.FileServerObserverGenertor;
+import com.ziyue.fileserver.observer.WriteEvent;
 import com.ziyue.website.common.rpc.FileServiceGrpc;
 import com.ziyue.website.common.rpc.RPCFileServer;
 
 import io.grpc.stub.StreamObserver;
 
+@Component
 public class ServerHandler extends FileServiceGrpc.FileServiceImplBase {
 
+    private FileServerObserverGenertor fileServerObserverGenertor;
+
+    @Autowired
+    public ServerHandler(FileServerObserverGenertor fileServerObserverGenertor) {
+       this.fileServerObserverGenertor = fileServerObserverGenertor;
+
+    }
 
     @Override
     public void addFile(RPCFileServer.AddFileRequest request,
                         StreamObserver<RPCFileServer.AddFileRespose> responseObserver) {
-        super.addFile(request, responseObserver);
+       fileServerObserverGenertor.post(new WriteEvent(request, responseObserver));
     }
 
     @Override

@@ -5,13 +5,11 @@
 
 package com.ziyue.fileserver.observer;
 
-import com.ziyue.website.common.observer.RPCEvent;
-import com.ziyue.website.common.rpc.RPCCommon;
+import com.ziyue.website.common.observer.Event;
+import com.ziyue.website.common.observer.EventType;
 
-import io.grpc.stub.StreamObserver;
-
-public abstract class FileServerEvent extends RPCEvent {
-    public FileServerEvent(RPCCommon.Request request, StreamObserver<RPCCommon.Response> responseObserver) {
-        super(request, responseObserver);
+public abstract class FileServerEvent extends Event {
+    public FileServerEvent(EventType eventType) {
+        super(eventType);
     }
 }

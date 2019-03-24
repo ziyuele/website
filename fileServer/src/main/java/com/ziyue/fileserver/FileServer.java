@@ -3,7 +3,10 @@
  * any questions you can  send mail 2429362606@qq.com
  */
 
-package com.ziyue.fileserver;import org.springframework.boot.CommandLineRunner;
+package com.ziyue.fileserver;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,16 +25,19 @@ public class FileServer implements CommandLineRunner {
 
     private RPCServer fileServer;
     private Commons commons;
+    private ServerHandler serverHandler;
 
 
-    public FileServer(Commons commons) {
+    @Autowired
+    public FileServer(Commons commons, ServerHandler serverHandler) {
        this.commons = commons;
+       this.serverHandler = serverHandler;
     }
 
     private void init() {
         GRPCServerImpl.Args fileServerArg = new GRPCServerImpl.Args();
         fileServerArg.port = commons.getFILE_SERVER_RPC_PORT();
-        fileServerArg.service = new ServerHandler();
+        fileServerArg.service = serverHandler;
         this.fileServer = new GRPCServerImpl(fileServerArg);
     }
 

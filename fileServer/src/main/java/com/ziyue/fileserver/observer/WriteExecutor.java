@@ -3,12 +3,15 @@
  * any questions you can  send mail 2429362606@qq.com
  */
 
-package com.ziyue.fileserver.observer.reader;
+package com.ziyue.fileserver.observer;
+
+import org.springframework.stereotype.Component;
 
 import com.ziyue.website.common.observer.Event;
 import com.ziyue.website.common.observer.Observer;
 
-public class ReaderExecutor implements Observer {
+@Component
+public class WriteExecutor implements Observer {
     @Override
     public void preRun() {
 

@@ -29,6 +29,10 @@ public class RPCEvent extends Event{
             return EventType.PING;
         } else if (type == RPCCommon.RequestConfigrationType.NORMAL) {
             return EventType.NORMAL;
+        } else if (type == RPCCommon.RequestConfigrationType.FILE_WIRTE) {
+           return EventType.FILE_WRITE;
+        } else if (type == RPCCommon.RequestConfigrationType.FILE_READ) {
+           return EventType.FILE_READE;
         } else {
             return EventType.OTHER;
         }
