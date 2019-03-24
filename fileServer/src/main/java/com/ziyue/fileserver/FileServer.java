@@ -13,6 +13,9 @@ import com.ziyue.website.common.Commons;
 import com.ziyue.website.common.rpc.GRPCServerImpl;
 import com.ziyue.website.common.rpc.RPCServer;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootApplication
 @ComponentScan(basePackages = "com.ziyue")
 public class FileServer implements CommandLineRunner {
@@ -33,11 +36,14 @@ public class FileServer implements CommandLineRunner {
     }
 
     private void start() {
-       this.fileServer.start();
+        log.info("start fileServer ...");
+        this.fileServer.start();
     }
 
     private void waitForExit() {
-       this.fileServer.stop();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            this.fileServer.stop();
+        }));
     }
 
     @Override

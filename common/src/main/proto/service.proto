@@ -36,8 +36,8 @@ service ServerSSOService {
 }
 
 service FileService {
-    rpc addFile(AddFileRequest) returns (AddFileRespose);
-    rpc deleteFile(DeleteFileRequest) returns (DeleteFileResponse);
-    rpc getFile(GetFileRequest) returns (GetFileResponse);
+    rpc addFile(AddFileRequest) returns (AddFileRespose){};
+    rpc deleteFile(DeleteFileRequest) returns (DeleteFileResponse){};
+    rpc getFile(GetFileRequest) returns (GetFileResponse){};
 }
 

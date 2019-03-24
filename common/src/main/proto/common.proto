@@ -17,6 +17,8 @@ enum RequestConfigrationType {
    PING = 2;
    NORMAL = 3;
    OTHER = 4;
+   FILE_READ = 5;
+   FILE_WIRTE = 6;
 }
 
 message Configuration {

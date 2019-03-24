@@ -47,6 +47,7 @@ public class GRPCServerImpl extends AbstractRPCServer implements RPCServer {
             @Override
             public void run() {
                 try {
+                    log.info("try to start a rpc server: {}", server.toString());
                     GRPCServerImpl.this.server.start();
                     GRPCServerImpl.this.server.awaitTermination();
                 } catch (IOException | InterruptedException e) {

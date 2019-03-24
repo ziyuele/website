@@ -6,5 +6,5 @@
 package com.ziyue.website.common.observer;
 
 public enum EventType {
-    JOB, META, PING, NORMAL, OTHER,
+    JOB, META, PING, NORMAL, OTHER, FILE_READE, FILE_WRITE;
 }
