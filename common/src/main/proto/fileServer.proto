@@ -33,6 +33,7 @@ message DeleteFileResponse {
 
 message GetFileRequest {
     int32 id = 1;
+    bool sync = 2;
 }
 
 message GetFileResponse {

@@ -5,6 +5,8 @@
 
 package com.ziyue.fileserver.observer;
 
+import java.io.InputStream;
+
 import org.springframework.stereotype.Component;
 
 import com.ziyue.website.common.observer.Event;
@@ -15,6 +17,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class ReaderExecutor implements Observer {
+
+    private final Object OBJECT_LOCK = new Object();
+
     @Override
     public void preRun() {
         log.debug("do preRun action");
@@ -34,6 +39,11 @@ public class ReaderExecutor implements Observer {
            event = (ReaderEvent) e;
         }
         // there may be ut
+        if (event.request.getSync()){
+            synchronized(OBJECT_LOCK) {
+
+            }
+        }
         if (null != event.responseObserver) {
             event.responseObserver.onNext(null);
             event.responseObserver.onCompleted();

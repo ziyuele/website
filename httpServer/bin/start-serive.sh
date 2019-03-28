@@ -11,9 +11,9 @@ work_path=$(cd `dirname "$0"`; pwd)/..
 mkdir -p /tmp/Application
 service_pid=/tmp/Application/Application.pid
 function exit_with_usage(){
-echo "usage:"
-echo "\t--debug   # start debug moudle to start service"
-echo "\t--initdb    #init database for service"
+echo -e "usage:"
+echo -e "\t--debug   # start debug moudle to start service"
+echo -e "\t--initdb    #init database for service"
 exit -1
 }
 
@@ -39,7 +39,7 @@ if [[ -f "$service_pid" ]]; then
     fi
 fi
 #set env
-JAVA_BASE_ARGV="-Xms3g -Xmx3g"
+JAVA_BASE_ARGV="-Xms1g -Xmx1g -XX:+PrintGCDetails -XX:+PrintGCTimeStamps  -XX:+HeapDumpOnOutOfMemoryError"
 
 # set class path
 export CLASSPATH=$work_path/conf/log4j.properties:$CLASSPATH
