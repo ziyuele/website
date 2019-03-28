@@ -25,7 +25,9 @@ public abstract class ObserverSubject {
         if (observers.get(event.eventType) == null) {
             log.warn("no observer found!!!");
         }
+        observers.get(event.eventType).preRun();
         observers.get(event.eventType).run(event);
+        observers.get(event.eventType).postRun();
     }
 
     // 调用接口 发布消息

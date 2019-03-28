@@ -28,15 +28,16 @@ public class ReaderExecutor implements Observer {
     @Override
     public void run(Event e) {
         ReaderEvent event = null;
-        preRun();
         if (! (e instanceof ReaderEvent)) {
             log.error("error event publish");
         } else {
            event = (ReaderEvent) e;
         }
-        event.responseObserver.onNext(null);
-        event.responseObserver.onCompleted();
-        postRun();
+        // there may be ut
+        if (null != event.responseObserver) {
+            event.responseObserver.onNext(null);
+            event.responseObserver.onCompleted();
+        }
     }
 
 }
