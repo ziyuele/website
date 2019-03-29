@@ -27,7 +27,6 @@ public class FileServer implements CommandLineRunner {
     private Commons commons;
     private ServerHandler serverHandler;
 
-
     @Autowired
     public FileServer(Commons commons, ServerHandler serverHandler) {
        this.commons = commons;

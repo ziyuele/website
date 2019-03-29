@@ -15,13 +15,12 @@ import com.ziyue.fileserver.database.dao.DataSource;
 
 @Component
 @Transactional
-public interface DataSourceRepo extends JpaRepository<DataSource, Long> {
+public interface DataSourceRepo extends JpaRepository<DataSource, Integer> {
 
     @Override
     <S extends DataSource> S save(S s);
 
-    @Override
-    void deleteById(Long aLong);
+    void deleteById(int id);
 
-    DataSource getById(Long aLong);
+    DataSource getById(int id);
 }

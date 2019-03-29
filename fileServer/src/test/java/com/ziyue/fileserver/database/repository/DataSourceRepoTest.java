@@ -7,6 +7,7 @@ package com.ziyue.fileserver.database.repository;
 
 import static org.junit.Assert.*;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,8 +50,10 @@ public class DataSourceRepoTest {
         dataSource.setPath("/home/work");
         DataSource dataSource1 = dataSourceRepo.save(dataSource);
         log.info("id is : {}", dataSource1.getId());
-        long id = dataSource1.getId();
+        int id = dataSource1.getId();
         dataSourceRepo.deleteById(id);
+        DataSource res = dataSourceRepo.getById(dataSource1.getId());
+        Assert.assertNull(res);
     }
 
     @Test
@@ -64,5 +67,6 @@ public class DataSourceRepoTest {
         log.info("id is : {}", dataSource1.getId());
         DataSource dataSource2 = dataSourceRepo.getById(dataSource1.getId());
         log.info(dataSource2.toString());
+        Assert.assertEquals(dataSource1, dataSource2);
     }
 }

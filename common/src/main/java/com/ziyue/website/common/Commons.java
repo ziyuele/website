@@ -109,6 +109,12 @@ public class Commons {
     @Value("${website.fileserver.rpc.port:9996}")
     private int FILE_SERVER_RPC_PORT;
 
+    @Value("${website.fileserver.data.basedir:/tmp}")
+    private String FILE_SERVER_DATA_BASE_DIR;
+
+    @Value("${website.fileserver.data.write.size:102400}")
+    private long FILE_SERVER_DATA_WRITE_SIZE;
+
     /*
     this is default setting that can not be change
      */

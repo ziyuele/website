@@ -29,7 +29,7 @@ public class DataSource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private int id;
 
     @Column(name = "file_path")
     private String path;
