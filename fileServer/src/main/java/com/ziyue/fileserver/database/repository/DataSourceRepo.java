@@ -5,13 +5,23 @@
 
 package com.ziyue.fileserver.database.repository;
 
+
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 
 import com.ziyue.fileserver.database.dao.DataSource;
 
+@Component
 @Transactional
 public interface DataSourceRepo extends JpaRepository<DataSource, Long> {
 
+    @Override
+    <S extends DataSource> S save(S s);
+
+    @Override
+    void deleteById(Long aLong);
+
+    DataSource getById(Long aLong);
 }
