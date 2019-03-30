@@ -34,18 +34,19 @@ public class DataSourceRepoTest {
     public void saveTest() {
         DataSource dataSource = new DataSource();
         dataSource.setCreateTime("123456");
-        dataSource.setDelete(false);
+        dataSource.setIsDelete(false);
         dataSource.setLastUpdateTime("65432");
         dataSource.setPath("/home/work");
         DataSource dataSource1 = dataSourceRepo.save(dataSource);
         log.info("id is : {}", dataSource1.getId());
+        log.warn(dataSource1.toString());
     }
 
     @Test
     public void deleteByIdTest() {
         DataSource dataSource = new DataSource();
         dataSource.setCreateTime("123456");
-        dataSource.setDelete(false);
+        dataSource.setIsDelete(false);
         dataSource.setLastUpdateTime("65432");
         dataSource.setPath("/home/work");
         DataSource dataSource1 = dataSourceRepo.save(dataSource);
@@ -60,7 +61,7 @@ public class DataSourceRepoTest {
     public void getByIdTest() {
         DataSource dataSource = new DataSource();
         dataSource.setCreateTime("123456");
-        dataSource.setDelete(false);
+        dataSource.setIsDelete(false);
         dataSource.setLastUpdateTime("65432");
         dataSource.setPath("/home/work");
         DataSource dataSource1 = dataSourceRepo.save(dataSource);
@@ -68,5 +69,12 @@ public class DataSourceRepoTest {
         DataSource dataSource2 = dataSourceRepo.getById(dataSource1.getId());
         log.info(dataSource2.toString());
         Assert.assertEquals(dataSource1, dataSource2);
+    }
+
+    @Test
+    public void getTest() {
+        log.warn(dataSourceRepo.getById(28).toString());
+        log.warn(dataSourceRepo.getById(27).toString());
+        log.warn(dataSourceRepo.getById(26).toString());
     }
 }

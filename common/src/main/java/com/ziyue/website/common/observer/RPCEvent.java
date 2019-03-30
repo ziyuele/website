@@ -30,9 +30,11 @@ public class RPCEvent extends Event{
         } else if (type == RPCCommon.RequestConfigrationType.NORMAL) {
             return EventType.NORMAL;
         } else if (type == RPCCommon.RequestConfigrationType.FILE_WIRTE) {
-           return EventType.FILE_WRITE;
+            return EventType.FILE_WRITE;
         } else if (type == RPCCommon.RequestConfigrationType.FILE_READ) {
-           return EventType.FILE_READE;
+            return EventType.FILE_READE;
+        } else if (type == RPCCommon.RequestConfigrationType.FILE_DELETE) {
+            return EventType.FILE_DELETE;
         } else {
             return EventType.OTHER;
         }

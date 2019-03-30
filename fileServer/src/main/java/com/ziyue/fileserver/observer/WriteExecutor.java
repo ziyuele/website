@@ -57,33 +57,40 @@ public class WriteExecutor implements Observer {
             // 1.set data base
             DataSource dataSource = new DataSource();
             dataSource.setPath(commons.getFILE_SERVER_DATA_BASE_DIR()
-                    + "/" + Commons.TIME_STAMP() + "/"
+                    + "/" + Commons.TIME_STAMP().replaceAll(" |:|-", "") + "/"
                     + event.request.getName());
             dataSource.setCreateTime(Commons.TIME_STAMP());
             dataSource.setLastUpdateTime(Commons.TIME_STAMP());
-            dataSource.setDelete(false);
+            dataSource.setIsDelete(false);
 
             // 2.save data
+            String dir = dataSource.getPath().substring(0, dataSource.getPath().length()
+                    - event.request.getName().length() -1);
+            File dirFile = new File(dir);
             File file = new File(dataSource.getPath());
             try {
+                boolean res = dirFile.mkdir();
                 outputStream = new FileOutputStream(file);
                 bufferedOutputStream = new BufferedOutputStream(outputStream);
-                event.request.getData().writeTo(bufferedOutputStream);
+                log.warn(event.request.getData().toString());
+                byte wirteData[] = event.request.getData().toByteArray();
+                bufferedOutputStream.write(wirteData, 0, wirteData.length);
+                bufferedOutputStream.flush();
                 DataSource saveSource = dataSourceRepo.save(dataSource);
                 respose.setMsg("OK").setCode(RPCCommon.ErrorCode.OK).setId(saveSource.getId());
             } catch (IOException ioe) {
                 log.warn(ioe.getMessage(), ioe);
-                return;
+                respose.setMsg(ioe.getMessage()).setCode(RPCCommon.ErrorCode.INTERNAL_ERROR).setId(-1);
             } finally {
-                if (null != outputStream) {
+                if (null != bufferedOutputStream) {
                     try {
-                        outputStream.close();
+                        bufferedOutputStream.close();
                     } catch (IOException e1) {
                         log.warn(e1.getMessage(), e);
                     }
                     try {
-                        if (null != bufferedOutputStream) {
-                            bufferedOutputStream.close();
+                        if (null != outputStream) {
+                            outputStream.close();
                         }
                     } catch (IOException e1) {
                         log.warn(e1.getMessage(), e1);

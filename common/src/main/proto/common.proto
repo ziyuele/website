@@ -19,6 +19,7 @@ enum RequestConfigrationType {
    OTHER = 4;
    FILE_READ = 5;
    FILE_WIRTE = 6;
+   FILE_DELETE = 7;
 }
 
 message Configuration {

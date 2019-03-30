@@ -17,6 +17,7 @@ import com.ziyue.fileserver.rpc.ServerHandler;
 import com.ziyue.website.common.Commons;
 import com.ziyue.website.common.rpc.GRPCServerImpl;
 import com.ziyue.website.common.rpc.RPCServer;
+import com.ziyue.website.common.zookeeper.SessionFactory;
 import com.ziyue.website.common.zookeeper.ZKSession;
 
 import lombok.extern.slf4j.Slf4j;
@@ -32,10 +33,10 @@ public class FileServer implements CommandLineRunner {
     private ZKSession zkSession;
 
     @Autowired
-    public FileServer(Commons commons, ServerHandler serverHandler, ZKSession zkSession) {
+    public FileServer(Commons commons, ServerHandler serverHandler, SessionFactory factory) {
        this.commons = commons;
        this.serverHandler = serverHandler;
-       this.zkSession = zkSession;
+       this.zkSession = factory.getSession();
     }
 
     private void init() {

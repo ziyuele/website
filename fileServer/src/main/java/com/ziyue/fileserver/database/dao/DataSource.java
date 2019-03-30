@@ -34,8 +34,8 @@ public class DataSource {
     @Column(name = "file_path")
     private String path;
 
-    @Column(name = "is_delete")
-    private boolean isDelete;
+    @Column(name = "is_delete", columnDefinition = "boolean")
+    private Boolean isDelete;
 
     @Column(name = "create_time")
     private String createTime;
