@@ -6,10 +6,13 @@
 package com.ziyue.website.httpserver.rpc;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.google.protobuf.ByteString;
 import com.ziyue.website.common.Commons;
 import com.ziyue.website.common.rpc.RPCFileServer;
 
+@Component
 public class FileServerClient {
 
     private final ClientProtoHandler handler;
@@ -21,9 +24,9 @@ public class FileServerClient {
         this.commons = commons;
     }
 
-    public RPCFileServer.AddFileRespose addFile() {
+    public RPCFileServer.AddFileRespose addFile(int id, String fileName, byte[] data) {
         RPCFileServer.AddFileRequest request = RPCFileServer.AddFileRequest.newBuilder()
-                .setId(1).setName("test").setData(null)
+                .setId(1).setName("test").setData(ByteString.copyFrom(data))
                 .build();
         return handler.getFileStub().addFile(request);
     }

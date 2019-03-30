@@ -5,16 +5,31 @@
 
 package com.ziyue.website.httpserver.rpc;
 
-import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@SpringBootTest
+@EnableAutoConfiguration
+@ComponentScan("com.ziyue")
+@RunWith(SpringJUnit4ClassRunner.class)
 public class FileServerClientTest {
 
-    FileServerClient fileServerClient = new FileServerClient();
+    @Autowired
+    FileServerClient fileServerClient;
 
     @Test
     public void addFile() {
+        String s = "kangjianadsfd";
+        fileServerClient.addFile(0, "test", s.getBytes());
     }
 
     @Test
