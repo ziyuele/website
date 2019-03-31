@@ -49,7 +49,7 @@
 	export CLASSPATH=$work_path/webapp/*:$CLASSPATH
 
 	# start service
-	nohup java  $JAVA_BASE_ARGV $JAVA_DEBUG_ARGV com.ziyue.website.fileserver.FileServer $INPUT_ARGV >> nohup.out2>&1 </dev/null &
+	nohup java  $JAVA_BASE_ARGV $JAVA_DEBUG_ARGV com.ziyue.fileserver.FileServer $INPUT_ARGV >> nohup.out2>&1 </dev/null &
 	pid=$!
 	echo "service start whith pid $pid"
 	echo $pid > $service_pid
