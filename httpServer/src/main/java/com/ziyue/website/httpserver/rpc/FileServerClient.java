@@ -26,7 +26,7 @@ public class FileServerClient {
 
     public RPCFileServer.AddFileRespose addFile(int id, String fileName, byte[] data) {
         RPCFileServer.AddFileRequest request = RPCFileServer.AddFileRequest.newBuilder()
-                .setId(1).setName("test").setData(ByteString.copyFrom(data))
+                .setId(id).setName(fileName).setData(ByteString.copyFrom(data))
                 .build();
         return handler.getFileStub().addFile(request);
     }
