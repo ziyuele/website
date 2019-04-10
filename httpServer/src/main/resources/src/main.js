@@ -7,10 +7,12 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import PDFS from './pdfs.vue';
 import HOME from './home.vue';
+import FILE from './file.vue';
 
 const vueRouter = [
     { path: '/', component: HOME },
-    { path:'/v1/pdfs', component: PDFS  }
+    { path:'/v1/pdfs', component: PDFS },
+    { path: '/files', component: FILE}
 ];
 
 

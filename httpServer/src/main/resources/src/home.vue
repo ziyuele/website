@@ -36,9 +36,18 @@ export default  {
     },
     data() {
        return {
-           image_item : "1.jpg"
+           image_item : getPic()
        }
     },
+    methods: {
+        getPic() {
+            $.ajax({
+                type: 'GET',
+                url:'/files/0',
+                success
+            });
+        }
+    }
 }
 
 </script>
