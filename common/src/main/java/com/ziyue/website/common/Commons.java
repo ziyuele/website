@@ -115,7 +115,7 @@ public class Commons {
     @Value("${website.fileserver.data.write.size:102400}")
     private long FILE_SERVER_DATA_WRITE_SIZE;
 
-    @Value("${website.fileserver.zookeeper.root.path:/website/fileServer}")
+    @Value("${website.fileserver.zookeeper.root.path:/website/fileserver}")
     private String FILE_SERVER_ZOOKEEPER_ROOT_PATH;
 
     /*

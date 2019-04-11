@@ -33,8 +33,9 @@ module.exports = {
       port: 8888,
       disableHostCheck: true,
       proxy: {
-          '/v1/': {
-              target: 'http://localhost:8080/',
+          '/': {
+              //target: 'http://localhost:8080/',
+              target: 'http://140.143.132.21:8080/',
               changeOrigin: true,
               pathRewrite: {
                   '^/api': ''

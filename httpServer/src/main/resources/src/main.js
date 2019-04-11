@@ -12,7 +12,7 @@ import FILE from './file.vue';
 const vueRouter = [
     { path: '/', component: HOME },
     { path:'/v1/pdfs', component: PDFS },
-    { path: '/files', component: FILE}
+    { path: '/v1/files', component: FILE}
 ];
 
 
