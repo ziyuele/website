@@ -58,10 +58,10 @@ public class ClientProtoHandler implements Runnable{
     }
 
     public FileServiceGrpc.FileServiceBlockingStub getFileStub() {
-        log.info(fileServers.toString());
         if (fileServers.isEmpty()) {
             throw new NoMasterException("master is empty");
         }
+        log.info(fileServers.toString());
         if (this.fileServerManagedChannel != null) {
             return FileServiceGrpc.newBlockingStub(fileServerManagedChannel);
         } else {
@@ -92,7 +92,8 @@ public class ClientProtoHandler implements Runnable{
                     }
                     this.masters = newMasters;
                 }
-                if (masters.isEmpty()) {
+
+                if (fileServers.isEmpty()) {
                     log.warn("no fileServer found");
                 } else {
                     log.debug("get fileServer total: {}, fileNodes: {}", fileNodes.size(), fileNodes.toString());
