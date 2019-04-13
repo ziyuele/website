@@ -8,7 +8,9 @@ package com.ziyue.fileserver.rpc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.ziyue.fileserver.observer.DeleteEvent;
 import com.ziyue.fileserver.observer.FileServerObserverGenertor;
+import com.ziyue.fileserver.observer.ReaderEvent;
 import com.ziyue.fileserver.observer.WriteEvent;
 import com.ziyue.website.common.rpc.FileServiceGrpc;
 import com.ziyue.website.common.rpc.RPCFileServer;
@@ -35,12 +37,12 @@ public class ServerHandler extends FileServiceGrpc.FileServiceImplBase {
     @Override
     public void deleteFile(RPCFileServer.DeleteFileRequest request,
                            StreamObserver<RPCFileServer.DeleteFileResponse> responseObserver) {
-        super.deleteFile(request, responseObserver);
+        fileServerObserverGenertor.post(new DeleteEvent(request, responseObserver));
     }
 
     @Override
     public void getFile(RPCFileServer.GetFileRequest request,
                         StreamObserver<RPCFileServer.GetFileResponse> responseObserver) {
-        super.getFile(request, responseObserver);
+        fileServerObserverGenertor.post(new ReaderEvent(request, responseObserver));
     }
 }
