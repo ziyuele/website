@@ -58,15 +58,14 @@ public class ClientProtoHandler implements Runnable{
     }
 
     public FileServiceGrpc.FileServiceBlockingStub getFileStub() {
-        if (fileServers.isEmpty()) {
-            throw new NoMasterException("master is empty");
+        if (null == fileServers || fileServers.isEmpty()) {
+            throw new NoMasterException("fileServer is empty");
         }
-        log.info(fileServers.toString());
         if (this.fileServerManagedChannel != null) {
             return FileServiceGrpc.newBlockingStub(fileServerManagedChannel);
         } else {
             // TODO there need a schedue calcuter
-            String fileServer = fileServers.get((int)(Math.random() * masters.size()));
+            String fileServer = fileServers.get((int)(Math.random() * fileServers.size()));
             String fileServerHost[] = fileServer.split(":");
             int port = Integer.parseInt(fileServerHost[1]);
             this.fileServerManagedChannel = ManagedChannelBuilder.forAddress(fileServerHost[0], port)
@@ -93,13 +92,13 @@ public class ClientProtoHandler implements Runnable{
                     this.masters = newMasters;
                 }
 
-                if (fileServers.isEmpty()) {
+                if (fileNodes.isEmpty()) {
                     log.warn("no fileServer found");
                 } else {
                     log.debug("get fileServer total: {}, fileNodes: {}", fileNodes.size(), fileNodes.toString());
                     List<String> newFileServers = new ArrayList<>();
                     for (String fileServer : fileNodes) {
-                        fileNodes.add(zkSession.get(commons.getFILE_SERVER_ZOOKEEPER_ROOT_PATH() + "/" + fileServer));
+                        newFileServers.add(zkSession.get(commons.getFILE_SERVER_ZOOKEEPER_ROOT_PATH() + "/" + fileServer));
                     }
                     this.fileServers = newFileServers;
                 }
