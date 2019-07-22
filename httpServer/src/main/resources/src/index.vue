@@ -24,7 +24,7 @@
                             <el-menu-item index="fff" :route="{path:'/'}">INDEX</el-menu-item>
                             <el-menu-item index="fff" :route="{path:'/v1/pdfs'}">PDFS</el-menu-item>
                             <el-menu-item index="ggg" :route="{path:'/v1/files'}">FILES</el-menu-item>
-                            <el-menu-item index="hhh" :route="{path:'/app1/'}">BLOGS</el-menu-item>
+                            <el-menu-item index="hhh" :route="{path:'/v1/blogs'}">BLOGS</el-menu-item>
                             <el-menu-item index="zzz" :route="{path:'/app1/'}">PERSONAL</el-menu-item>
                         </el-menu>
                     </template>
