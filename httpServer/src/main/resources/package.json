@@ -3,7 +3,9 @@
      "description": "vue font end",
      "version": "1.0.0",
      "dependencies": {
-          "babel": "^6.23.0"
+          "babel": "^6.23.0",
+          "marked": "^0.7.0",
+          "mavon-editor": "^2.7.6"
      },
      "devDependencies": {
           "autoprefixer": "^9.4.5",

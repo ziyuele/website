@@ -6,6 +6,16 @@
 <template>
     <div>
         <div>
+            <el-row>
+                <el-button style="float: right" type="primary" round
+                           onclick="window.location.href='/#/v1/writeMarkDown'">Write-new
+                    -Blog</el-button>
+            </el-row>
+        </div>
+        <div style="height: 10px">
+            <el-divider></el-divider>
+        </div>
+        <div>
             <template>
                 <el-input v-model="input" placeholder="Search files what you want ^v^">
                 <el-button slot="append" icon="el-icon-search"></el-button></el-input>

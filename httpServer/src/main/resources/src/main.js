@@ -5,21 +5,26 @@ import WaterfallEasy from 'vue-waterfall-easy';
 // element ui support
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import mavonEditor from 'mavon-editor';
+import 'mavon-editor/dist/css/index.css';
 
 import PDFS from './pdfs.vue';
 import HOME from './home.vue';
 import FILE from './file.vue';
 import BLOGS from './blogs.vue';
+import MARKDOWNEDITOR from './writeMarkDown.vue';
 
 const vueRouter = [
     { path: '/', component: HOME },
     { path:'/v1/pdfs', component: PDFS },
     { path: '/v1/files', component: FILE},
-    { path: '/v1/blogs', component: BLOGS}
+    { path: '/v1/blogs', component: BLOGS},
+    { path: '/v1/writeMarkDown',component: MARKDOWNEDITOR }
 ];
 
 
 
+Vue.use(mavonEditor);
 Vue.use(ElementUI);
 Vue.use(VueRouter);
 Vue.use(WaterfallEasy);
