@@ -35,7 +35,9 @@ public class HttpServer implements CommandLineRunner {
     }
 
     private void start() {
-       handler.start();
+        if (commons.isSERVER_RPC_CLIENT_ENABLE()) {
+            handler.start();
+        }
     }
 
     private void exit(int staus) {

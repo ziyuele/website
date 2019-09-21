@@ -31,6 +31,8 @@ public class Commons {
 
     @Value("${website.server.datafile.path:/tmp}")
     private String SERVER_DATAFILE_PATH;
+    @Value("${website.server.rpc.client.enble:false}")
+    private boolean SERVER_RPC_CLIENT_ENABLE;
 
     /*
     this is master module
