@@ -6,13 +6,13 @@
 package com.ziyue.website.httpserver.service.markdown;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.ziyue.website.httpserver.dao.beans.MarkDown;
 import com.ziyue.website.httpserver.dao.repository.MarkDownRepo;
 
 
-@Service
+@Component
 public class MarkDownServiceImpl implements MarkDownService {
 
     private MarkDownRepo repo;
@@ -29,6 +29,6 @@ public class MarkDownServiceImpl implements MarkDownService {
 
     @Override
     public MarkDown getMarkDown(String title) {
-        return null;
+        return repo.getByTitle(title);
     }
 }

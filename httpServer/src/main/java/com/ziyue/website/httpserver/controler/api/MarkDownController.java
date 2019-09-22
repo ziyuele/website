@@ -6,6 +6,7 @@
 package com.ziyue.website.httpserver.controler.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,13 +24,17 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/v1")
 public class MarkDownController {
 
+    MarkDownServiceImpl markDownServiceImpl;
+
     @Autowired
-    MarkDownServiceImpl markDownService;
+    public MarkDownController(MarkDownServiceImpl markDownServiceImpl) {
+        this.markDownServiceImpl = markDownServiceImpl;
+    }
 
     @PostMapping("/v1/markdowns")
     public Response addMarkDown(MarkDown markDown) {
         try {
-            markDownService.addMarkDown(markDown);
+            markDownServiceImpl.addMarkDown(markDown);
             return Response.ok();
         } catch (Exception e) {
             return Response.error(e.getMessage());
@@ -38,7 +43,7 @@ public class MarkDownController {
 
     @GetMapping("/v1/markdowns/{title}")
     public Response getMarkDown(@PathVariable String title) {
-         return Response.ok(markDownService.getMarkDown(title));
+         return Response.ok(markDownServiceImpl.getMarkDown(title));
     }
 
 }

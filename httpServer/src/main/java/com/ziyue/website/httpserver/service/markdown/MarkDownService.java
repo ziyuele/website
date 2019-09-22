@@ -5,11 +5,10 @@
 
 package com.ziyue.website.httpserver.service.markdown;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.ziyue.website.httpserver.dao.beans.MarkDown;
 
-@Service
 public interface MarkDownService {
 
     public void addMarkDown(MarkDown markDown) throws Exception;

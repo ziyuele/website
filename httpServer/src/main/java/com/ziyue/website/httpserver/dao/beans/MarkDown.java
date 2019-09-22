@@ -8,6 +8,7 @@ package com.ziyue.website.httpserver.dao.beans;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
+@Entity
 @EqualsAndHashCode(exclude = "id")
 @Table(name = "website_markdowns")
 public class MarkDown implements Serializable {
