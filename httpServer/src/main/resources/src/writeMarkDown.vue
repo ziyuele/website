@@ -31,6 +31,8 @@
                 if (this.input === "") {
                     this.$alert("FileName should be null");
                     return
+                } else {
+                    $.ajax()
                 }
                 alert(value);
             }

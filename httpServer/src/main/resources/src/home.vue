@@ -17,10 +17,11 @@
         <template>
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
-                    <span>recent news</span>
+                    <span><b>MARKDOWN DOCUMENT PLACE</b></span>
                 </div>
                 <div v-for="o in 4" :key="o" class="text item">
-                    {{'列表内容 ' + o }}
+                   <a href="/v1/pdfs/">{{'列表内容 ' + o }}</a>
+                    <div style="height: 5px"/>
                 </div>
             </el-card>
         </template>
@@ -30,10 +31,11 @@
             <template>
                 <el-card class="box-card">
                     <div slot="header" class="clearfix">
-                        <span>recent news</span>
+                        <span><b>PDF DOCUMENT PLACE</b></span>
                     </div>
                     <div v-for="o in 4" :key="o" class="text item">
-                        {{'列表内容 ' + o }}
+                        <a href="/v1/pdfs/">{{'列表内容 ' + o }}</a>
+                        <div style="height: 5px"/>
                     </div>
                 </el-card>
             </template>

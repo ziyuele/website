@@ -6,20 +6,29 @@
 <template>
     <div>
         <div>
-            <el-row>
-                <el-button style="float: right" type="primary" round
-                           onclick="window.location.href='/#/v1/writeMarkDown'">Write-new
-                    -Blog</el-button>
-            </el-row>
+                <template>
+                    <el-card class="box-card">
+                        <div slot="header" class="clearfix">
+                            <span><strong>File Manager</strong></span>
+                        </div>
+                        <div style="display: inline">
+                            <el-row :gutter="20" style="text-align: center">
+                                <el-col :span="18">
+                                    <el-input v-model="input" placeholder="Search files what you want ^v^">
+                                        <el-button slot="append" icon="el-icon-search"></el-button></el-input>
+                                </el-col>
+                                <el-col :span="6">
+                                    <el-button round onclick="window.location.href='/#/v1/writeMarkDown'">Write-new
+                                        -Blog</el-button>
+                                </el-col>
+                            </el-row>
+                        </div>
+                    </el-card>
+                </template>
+
         </div>
         <div style="height: 10px">
             <el-divider></el-divider>
-        </div>
-        <div>
-            <template>
-                <el-input v-model="input" placeholder="Search files what you want ^v^">
-                <el-button slot="append" icon="el-icon-search"></el-button></el-input>
-            </template>
         </div>
         <div style="height: 20px">
             <el-divider></el-divider>
