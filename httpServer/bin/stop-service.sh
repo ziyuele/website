@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-bin_path=$(cd `dirname "$0"`; pwd)
+bin_path=$(cd `dirname "$0"`; pwd)/..
 	service_pid=$bin_path/.HttpServer.pid
 
 	if [ -f "$service_pid" ]; then
