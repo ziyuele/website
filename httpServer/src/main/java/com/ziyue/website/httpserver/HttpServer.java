@@ -1,8 +1,5 @@
 package com.ziyue.website.httpserver;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -10,9 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.ziyue.website.common.Commons;
-import com.ziyue.website.common.zookeeper.SessionFactory;
-import com.ziyue.website.common.zookeeper.ZKSession;
-import com.ziyue.website.httpserver.rpc.ClientProtoHandler;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,22 +16,16 @@ import lombok.extern.slf4j.Slf4j;
 public class HttpServer implements CommandLineRunner {
 
     private Commons commons;
-    private ClientProtoHandler handler;
 
     @Autowired
-    public HttpServer(Commons commons, ClientProtoHandler handler) {
+    public HttpServer(Commons commons) {
         this.commons = commons;
-        this.handler = handler;
     }
 
     private void init() {
-
     }
 
     private void start() {
-        if (commons.isSERVER_RPC_CLIENT_ENABLE()) {
-            handler.start();
-        }
     }
 
     private void exit(int staus) {

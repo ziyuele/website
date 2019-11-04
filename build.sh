@@ -26,21 +26,11 @@ function build(){
     mvn clean package -DskipTests
     rm -rf output; mkdir output
     mkdir -p output/httpServer
-    mkdir -p output/master
-    mkdir -p output/worker
     mkdir -p output/sso
-    mkdir -p output/fileServer
     # set httpServer
     cd httpServer/target
     mv conf lib bin httpServer-*.jar ../../output/httpServer && cd -
     echo "http server done"
-    # set master
-    cd master/target
-    mv conf lib bin master-*.jar ../../output/master && cd -
-    echo "master done"
-    cd fileServer/target
-    mv conf lib bin fileServer-*.jar ../../output/fileServer && cd -
-    echo "fileServer done"
 }
 
 if [[ $# != 1 ]];then

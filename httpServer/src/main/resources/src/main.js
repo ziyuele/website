@@ -13,13 +13,15 @@ import HOME from './home.vue';
 import FILE from './file.vue';
 import BLOGS from './blogs.vue';
 import MARKDOWNEDITOR from './writeMarkDown.vue';
+import INFO from './infos.vue';
 
 const vueRouter = [
     { path: '/', component: HOME },
     { path:'/v1/pdfs', component: PDFS },
     { path: '/v1/files', component: FILE},
     { path: '/v1/blogs', component: BLOGS},
-    { path: '/v1/writeMarkDown',component: MARKDOWNEDITOR }
+    { path: '/v1/writeMarkDown',component: MARKDOWNEDITOR },
+    { path: '/v1/personal',component: INFO }
 ];
 
 
