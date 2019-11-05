@@ -26,15 +26,29 @@
          }
         },
         methods :{
-            saveAction(value) {
+            saveAction(value, input) {
                 //alert("is going to save file")
                 if (this.input === "") {
                     this.$alert("FileName should be null");
                     return
                 } else {
-                    $.ajax()
+                    $.ajax({
+                        url: "/v1/markdowns",
+                        type: 'POST',
+                        data: JSON.stringify({
+                            title: input,
+                            documents: value,
+                            author: ''
+                        }),
+                        success: (data) => {
+                            this.alert(JSON.stringify(data.message));
+                            this.$message("save ok");
+                        },
+                        error: (data) => {
+                            this.$alert(JSON.parse(data.responseText).message);
+                        }
+                    })
                 }
-                alert(value);
             }
         }
     }

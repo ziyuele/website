@@ -31,7 +31,7 @@ public class MarkDownController {
         this.markDownServiceImpl = markDownServiceImpl;
     }
 
-    @PostMapping("/v1/markdowns")
+    @PostMapping("/markdowns")
     public Response addMarkDown(MarkDown markDown) {
         try {
             markDownServiceImpl.addMarkDown(markDown);
@@ -41,7 +41,7 @@ public class MarkDownController {
         }
     }
 
-    @GetMapping("/v1/markdowns/{title}")
+    @GetMapping("/markdowns/{title}")
     public Response getMarkDown(@PathVariable String title) {
          return Response.ok(markDownServiceImpl.getMarkDown(title));
     }
