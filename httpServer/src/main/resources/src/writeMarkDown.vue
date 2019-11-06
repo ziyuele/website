@@ -21,12 +21,13 @@
         },
         data() {
          return {
+             headers: {"Content-Type": "application/json"},
              input: "",
              value: "",
          }
         },
         methods :{
-            saveAction(value, input) {
+            saveAction(value) {
                 //alert("is going to save file")
                 if (this.input === "") {
                     this.$alert("FileName should be null");
@@ -35,19 +36,22 @@
                     $.ajax({
                         url: "/v1/markdowns",
                         type: 'POST',
+                        headers: this.headers,
                         data: JSON.stringify({
-                            title: input,
+                            title: this.input,
                             documents: value,
-                            author: ''
+                            author: "kangjian"
                         }),
                         success: (data) => {
-                            this.alert(JSON.stringify(data.message));
+                            this.$alert(data.message);
                             this.$message("save ok");
                         },
                         error: (data) => {
-                            this.$alert(JSON.parse(data.responseText).message);
+                            this.$alert(data);
                         }
-                    })
+                    });
+                    this.alert("haah");
+
                 }
             }
         }

@@ -5,14 +5,18 @@
 
 package com.ziyue.website.httpserver.controler.api;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ziyue.website.common.Commons;
 import com.ziyue.website.httpserver.controler.Response;
 import com.ziyue.website.httpserver.dao.beans.MarkDown;
 import com.ziyue.website.httpserver.service.markdown.MarkDownServiceImpl;
@@ -32,7 +36,8 @@ public class MarkDownController {
     }
 
     @PostMapping("/markdowns")
-    public Response addMarkDown(MarkDown markDown) {
+    public Response addMarkDown(@RequestBody MarkDown markDown) {
+        markDown.setCreateTime(Commons.TIME_STAMP());
         try {
             markDownServiceImpl.addMarkDown(markDown);
             return Response.ok();

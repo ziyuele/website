@@ -6,13 +6,15 @@
 package com.ziyue.website.httpserver.service.markdown;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.data.annotation.Transient;
+import org.springframework.stereotype.Service;
 
+import com.ziyue.website.common.Commons;
 import com.ziyue.website.httpserver.dao.beans.MarkDown;
 import com.ziyue.website.httpserver.dao.repository.MarkDownRepo;
 
 
-@Component
+@Service("markDownService")
 public class MarkDownServiceImpl implements MarkDownService {
 
     private MarkDownRepo repo;
@@ -23,7 +25,9 @@ public class MarkDownServiceImpl implements MarkDownService {
     }
 
     @Override
+    @Transient
     public void addMarkDown(MarkDown markDown) throws Exception {
+        markDown.setLastUpdateTime(Commons.TIME_STAMP());
         repo.save(markDown);
     }
 
