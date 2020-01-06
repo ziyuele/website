@@ -1,10 +1,13 @@
 package com.ziyue.website.httpserver;
 
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
 
 import com.ziyue.website.common.Commons;
 
@@ -12,7 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootApplication
-@ComponentScan("com.ziyue")
+@ComponentScan(value = "com.ziyue", excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX,
+        pattern = "com.ziyue.website.common.zookeeper")})
 public class HttpServer implements CommandLineRunner {
 
     private Commons commons;
@@ -45,6 +49,11 @@ public class HttpServer implements CommandLineRunner {
     }
 
     public static void main(String[] args) {
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+                System.out.println("System is going to exits at :" +
+                        new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                        .format(System.currentTimeMillis()));
+        }));
         try {
             log.info("start service");
             SpringApplication.run(HttpServer.class, args);

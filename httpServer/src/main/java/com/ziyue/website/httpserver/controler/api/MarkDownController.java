@@ -25,7 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping("/v1")
+@RequestMapping(value = "/v1", produces = "application/json;charset=UTF-8")
 public class MarkDownController {
 
     MarkDownServiceImpl markDownServiceImpl;
@@ -40,6 +40,7 @@ public class MarkDownController {
         markDown.setCreateTime(Commons.TIME_STAMP());
         try {
             markDownServiceImpl.addMarkDown(markDown);
+            log.warn("detail is :{}", markDown.toString());
             return Response.ok();
         } catch (Exception e) {
             return Response.error(e.getMessage());
@@ -49,6 +50,11 @@ public class MarkDownController {
     @GetMapping("/markdowns/{title}")
     public Response getMarkDown(@PathVariable String title) {
          return Response.ok(markDownServiceImpl.getMarkDown(title));
+    }
+
+    @GetMapping("/markdowns")
+    public Response listMarkDown() {
+       return Response.ok(markDownServiceImpl.listMarkDown());
     }
 
 }

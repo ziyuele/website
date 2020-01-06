@@ -62,27 +62,6 @@ public class Commons {
 
     @Value("${website.worker.rpc.server.port:9998}")
     private int WORKER_RPC_SERVER_PORT;
-    /*
-    this is common module
-     */
-    /* zookeeper */
-    @Value("${website.common.zookeeper.implement.type:zookeeper}")
-    private String ZOOKEEPER_IMPLEMENT_TYPE;
-
-    @Value("${website.common.zookeeper.server.host:140.143.132.21}")
-    private String ZOOKEEPER_SERVER_HOST;
-
-    @Value("${website.common.zookeeper.server.port:8181}")
-    private int ZOOKEEPER_SERVER_PORT;
-
-    @Value("${website.common.zookeeper.session.timeout:10000}")
-    private int ZOOKEEPER_SESSION_TIMEOUT;
-
-    @Value("${website.common.zookeeper.sych.session.time.ms:30000}")
-    private long ZOOKEEPER_SYCH_SESSION_TIME_MS;
-
-    @Value("${website.common.devault.charset.encoding:UTF-8}")
-    private String DEFAULT_CHARSET_ENCODING;
 
     /* this is sso module */
 

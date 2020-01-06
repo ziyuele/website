@@ -5,6 +5,8 @@
 
 package com.ziyue.website.httpserver.service.markdown;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Transient;
 import org.springframework.stereotype.Service;
@@ -34,5 +36,10 @@ public class MarkDownServiceImpl implements MarkDownService {
     @Override
     public MarkDown getMarkDown(String title) {
         return repo.getByTitle(title);
+    }
+
+    @Override
+    public List<MarkDown> listMarkDown() {
+        return repo.getAllByLastUpdateTime("10");
     }
 }

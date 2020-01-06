@@ -5,6 +5,8 @@
 
 package com.ziyue.website.httpserver.service.markdown;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.ziyue.website.httpserver.dao.beans.MarkDown;
@@ -13,6 +15,7 @@ public interface MarkDownService {
 
     public void addMarkDown(MarkDown markDown) throws Exception;
 
-    public MarkDown getMarkDown(String titl);
+    public MarkDown getMarkDown(String title);
 
+    List<MarkDown> listMarkDown();
 }

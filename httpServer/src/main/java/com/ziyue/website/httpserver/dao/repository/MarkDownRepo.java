@@ -10,6 +10,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Component;
 
 import com.ziyue.website.httpserver.dao.beans.MarkDown;
@@ -23,7 +24,8 @@ public interface MarkDownRepo extends JpaRepository<MarkDown, Long> {
 
     MarkDown getByTitle(String title);
 
-    List<MarkDown> getTopByLastUpdateTime(int topNum);
+    @Query(nativeQuery = true, value = "SELECT * FROM website_markdowns LIMIT 10")
+    List<MarkDown> getAllByLastUpdateTime(String topNum);
 
 }
 

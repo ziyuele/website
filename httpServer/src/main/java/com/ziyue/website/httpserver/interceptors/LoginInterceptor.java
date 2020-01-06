@@ -21,7 +21,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             throws Exception {
         log.info("get request {}, '{}'", request.getMethod(), request.getRequestURI());
         long startTime = System.currentTimeMillis();
-        request.setAttribute("requestTime", startTime);
+        log.warn("wcnm" + request.getParts().toString());
+        log.warn(request.getCharacterEncoding());
         return true;
     }
 

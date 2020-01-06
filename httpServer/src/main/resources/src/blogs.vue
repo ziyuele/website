@@ -37,8 +37,8 @@
         <template v-for="blog in blogs">
                 <el-col span="6" style="margin-bottom: 10px">
                 <el-card class="box-card" shadow="hover" style="height: 350px">
-                    <div slot="header" class="clearfix">{{blog}}</div>
-                    <div>this is tite</div>
+                    <div slot="header" class="clearfix">{{blog.title}}</div>
+                    <div>{{ blog.documents }}</div>
                 </el-card>
             </el-col>
         </template>
@@ -49,11 +49,22 @@
 <script>
     export default {
         name: "blogs.vue",
-        created() {},
+        created() {
+            $.ajax({
+                url: "/v1/markdowns",
+                methods: "GET",
+                success: (response) => {
+                   this.blogs = response.data;
+                },
+                error: (response) => {
+                    alert("Access error");
+                }
+            })
+        },
         data() {
             return {
             dataItems: [],
-            blogs: ["test", "res", 3, 4,4,3,2,3,4,2,2]
+            blogs: []
             }
         },
         methods: {

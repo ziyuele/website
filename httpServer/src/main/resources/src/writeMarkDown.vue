@@ -21,7 +21,7 @@
         },
         data() {
          return {
-             headers: {"Content-Type": "application/json"},
+             headers: {"Content-Type": "application/json", "charset": "UTF-8"},
              input: "",
              value: "",
          }
@@ -44,13 +44,13 @@
                         }),
                         success: (data) => {
                             this.$alert(data.message);
+                            this.$alert(value);
                             this.$message("save ok");
                         },
                         error: (data) => {
                             this.$alert(data);
                         }
                     });
-                    this.alert("haah");
 
                 }
             }
