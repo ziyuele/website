@@ -15,7 +15,8 @@
                             <el-row :gutter="20" style="text-align: center">
                                 <el-col :span="18">
                                     <el-input v-model="input" placeholder="Search files what you want ^v^">
-                                        <el-button slot="append" icon="el-icon-search"></el-button></el-input>
+                                        <el-button slot="append" icon="el-icon-search"></el-button>
+                                    </el-input>
                                 </el-col>
                                 <el-col :span="6">
                                     <el-button round onclick="window.location.href='/#/v1/writeMarkDown'">Write-new
@@ -28,10 +29,8 @@
 
         </div>
         <div style="height: 10px">
-            <el-divider></el-divider>
         </div>
         <div style="height: 20px">
-            <el-divider></el-divider>
         </div>
         <el-row :gutter="16">
         <template v-for="blog in blogs">
@@ -57,7 +56,7 @@
                    this.blogs = response.data;
                 },
                 error: (response) => {
-                    alert("Access error");
+                    alert(JSON.stringify(response));
                 }
             })
         },

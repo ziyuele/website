@@ -5,10 +5,8 @@
 
 package com.ziyue.website.httpserver.controler.api;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/v1", produces = "application/json;charset=UTF-8")
+@RequestMapping("/v1")
 public class MarkDownController {
 
     MarkDownServiceImpl markDownServiceImpl;

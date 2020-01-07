@@ -109,7 +109,7 @@ public class Commons {
     private static final String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private static final SimpleDateFormat format = new SimpleDateFormat(Commons.TIME_FORMAT);
 
-    public static String TIME_STAMP() {
+    public synchronized static String TIME_STAMP() {
         return format.format(System.currentTimeMillis());
     }
 
